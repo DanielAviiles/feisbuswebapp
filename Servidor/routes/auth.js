@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const loginC = require('../controller/authController');
 
-router.post('/login', async (req, res, next) => {
-  // const resp = await loginC.verify();
-  res.json({});
+router.post('/login', async (req, res) => {
+  try {
+    const resp = await loginC.authLogin(req);
+    res.json(JSON.stringify(resp[0].exist));
+  } catch (err) {
+    console.warn(err);
+  }
 });
 
 router.post('/register', async (req, res) => {

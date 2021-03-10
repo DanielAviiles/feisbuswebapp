@@ -26,16 +26,14 @@ app.use(express.json());
 
 // variables globales
 app.use((req, res, next) => {
-  // next();
-  // catch 404 and forward to error handler
-  next(createError(404));
+  next();
 });
 
 // rutas
 app.use(require('./routes'));
-app.use('/services/api/authentication',require('./routes/auth'));
-app.use('/services/api/data-basic-user',require('./routes/index'));
-app.use('/services/api/posteos',require('./routes/index'));
+app.use('/api/service/authentication',require('./routes/auth'));
+app.use('/api/service/data-basic-user',require('./routes/index'));
+app.use('/api/service/posteos',require('./routes/index'));
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));
