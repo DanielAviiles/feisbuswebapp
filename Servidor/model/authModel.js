@@ -17,6 +17,7 @@ const authRegister = async (newUser) => {
     console.log('Existe un usario');
     return JSON.stringify(exist[0].exist);
   }
+  console.log('No existe');
 }
 
 module.exports = {
