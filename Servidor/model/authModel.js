@@ -25,7 +25,7 @@ const authLoginM = async (email, passwd) => {
   return { exist: 0, userLogin: '' };
 }
 const verifyInfo = async (query, type) => {
-  const where = '';
+  let where = '';
   switch (type) {
     case 'email':
       where = `WHERE usuario.email LIKE '%${query}%'`;
