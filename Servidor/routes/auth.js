@@ -5,7 +5,7 @@ const loginC = require('../controller/authController');
 router.post('/login', async (req, res) => {
   try {
     const resp = await loginC.authLogin(req);
-    res.json(JSON.stringify(resp[0].exist));
+    res.json(resp);
   } catch (err) {
     console.warn(err);
   }
@@ -15,6 +15,16 @@ router.get('/verifyEmailExist', async (req, res) => {
   try {
     const { q } = req.query;
     const exist = await loginC.verifyEmail(q);
+    res.json(exist[0].exist);
+  } catch (err) {
+    console.warn(err);
+  }
+});
+
+router.get('/verifyCelExist', async (req, res) => {
+  try {
+    const { q } = req.query;
+    const exist = await loginC.verifyCelphone(q);
     res.json(exist[0].exist);
   } catch (err) {
     console.warn(err);

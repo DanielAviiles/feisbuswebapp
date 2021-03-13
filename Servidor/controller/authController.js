@@ -5,8 +5,10 @@ const authLogin = async (req) => {
   return await authM.authLoginM(email, passwd);
 }
 const verifyEmail = async (query) => (await authM.verifyEmailExist(query));
+const verifyCelphone = async (query) => (await authM.verifyCelExist(query));
 
 module.exports = {
   authLogin,
-  verifyEmail
+  verifyEmail,
+  verifyCelphone
 }
