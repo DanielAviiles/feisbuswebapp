@@ -7,20 +7,17 @@ const authLoginM = async (email, passwd) => {
         usuario.email = '${email}' 
         AND usuario.passwd = '${passwd}'`);
 }
-
+const verifyEmailExist = async (query) => {
+  return await pool.query(`SELECT COUNT(*) exist
+    FROM usuario
+    WHERE usuario.email LIKE '%${query}%'`);
+}
 const authRegister = async (newUser) => {
-  const exist = await pool.query(`SELECT COUNT(*) exist 
-    FROM usuario 
-    WHERE
-        usuario.email = '${newUser.email}'`);
-  if (JSON.stringify(resp[0].exist) == '1') {
-    console.log('Existe un usario');
-    return JSON.stringify(exist[0].exist);
-  }
-  console.log('No existe');
+  
 }
 
 module.exports = {
   authLoginM,
-  authRegister
+  authRegister,
+  verifyEmailExist
 }

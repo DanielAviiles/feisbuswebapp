@@ -11,7 +11,22 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/verifyEmailExist', async (req, res) => {
+  try {
+    const { q } = req.query;
+    const exist = await loginC.verifyEmail(q);
+    res.json(exist[0].exist);
+  } catch (err) {
+    console.warn(err);
+  }
+});
+
 router.post('/register', async (req, res) => {
+  try {
+    
+  } catch (err) {
+    console.warn(err);
+  }
   // Planteaminto de registro de usuario enviando data al back(DB)
   // res.render();
   // res.json();
