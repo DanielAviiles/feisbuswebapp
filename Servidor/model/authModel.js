@@ -25,12 +25,16 @@ const authLoginM = async (email, passwd) => {
   return { exist: 0, userLogin: '' };
 }
 const verifyInfo = async (query, type) => {
-  if (type === 'email') return await pool.query(`SELECT COUNT(*) exist
-      FROM usuario
-      WHERE usuario.email LIKE '%${query}%'`);
-  if (type === 'cel') return await pool.query(`SELECT COUNT(*) exist
-      FROM usuario
-      WHERE usuario.celular LIKE '%${query}%'`);
+  const where = '';
+  switch (type) {
+    case 'email':
+      where = `WHERE usuario.email LIKE '%${query}%'`;
+      break;
+    case 'cel':
+      where = `WHERE usuario.celular LIKE '%${query}%'`;
+      break;
+  }
+  return await pool.query(`SELECT COUNT(*) exist FROM usuario ${where}`);
 }
 const authRegister = async (newUser) => {
   
