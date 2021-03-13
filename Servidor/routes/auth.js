@@ -28,25 +28,14 @@ router.get('/verifyInfo', async (req, res) => {
   }
 });
 
-router.get('/verifyCelExist', async (req, res) => {
-  try {
-    const { q } = req.query;
-    const exist = await loginC.verifyCelphone(q);
-    res.json(exist[0].exist);
-  } catch (err) {
-    console.warn(err);
-  }
-});
-
 router.post('/register', async (req, res) => {
   try {
-    
+    await loginC.registerUser(req)
+      .then(() => res.json({status: 1, msg: 'Success'}))
+      .catch((err) => res.json({status: 0, msg: `Error ${err}`}));
   } catch (err) {
     console.warn(err);
   }
-  // Planteaminto de registro de usuario enviando data al back(DB)
-  // res.render();
-  // res.json();
 });
 
 module.exports = router;

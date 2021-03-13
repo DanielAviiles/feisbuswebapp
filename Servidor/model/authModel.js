@@ -36,8 +36,22 @@ const verifyInfo = async (query, type) => {
   }
   return await pool.query(`SELECT COUNT(*) exist FROM usuario ${where}`);
 }
-const authRegister = async (newUser) => {
-  
+const authRegister = async (newUser, newPerfil) => {
+  try {
+    await pool.query('INSERT INTO usuario SET ?', [newUser])
+      .then(async (res) => {
+        let datosPerfil = {
+          usuario_id: res.insertId,
+          fecha_nacimiento: newPerfil.fecha_nacimiento,
+          orientacion_sexual_id: newPerfil.orientacion_sexual
+        }
+        await pool.query('INSERT INTO perfil SET ?', [datosPerfil])
+          .then((res) => console.log(`REGISTRO EXITOSO DE PERFIL N${res.insertId}`))
+          .catch((err) => console.error(err));
+    }).catch((err) => console.error(err));
+  } catch (err) {
+    console.warn(err);
+  }
 }
 
 module.exports = {
