@@ -24,24 +24,14 @@ const authLoginM = async (email, passwd) => {
   }
   return { exist: 0, userLogin: '' };
 }
-/* SELECT COUNT(*) exist 
-FROM usuario 
-WHERE
-    (usuario.email = '317526513' 
-    	AND usuario.passwd = 'abcd.1234')
-    OR 
-    (usuario.celular = '317526513'
-    	AND usuario.passwd = 'abcd.1234') */
-const verifyEmailExist = async (query) => (
-  await pool.query(`SELECT COUNT(*) exist
-    FROM usuario
-    WHERE usuario.email LIKE '%${query}%'`)
-);
-const verifyCelExist = async (query) => (
-  await pool.query(`SELECT COUNT(*) exist
-      FROM perfil 
-      WHERE perfil.celular LIKE '%${query}%'`)
-);
+const verifyInfo = async (query, type) => {
+  if (type === 'email') return await pool.query(`SELECT COUNT(*) exist
+      FROM usuario
+      WHERE usuario.email LIKE '%${query}%'`);
+  if (type === 'cel') return await pool.query(`SELECT COUNT(*) exist
+      FROM usuario
+      WHERE usuario.celular LIKE '%${query}%'`);
+}
 const authRegister = async (newUser) => {
   
 }
@@ -49,6 +39,5 @@ const authRegister = async (newUser) => {
 module.exports = {
   authLoginM,
   authRegister,
-  verifyEmailExist,
-  verifyCelExist
+  verifyInfo
 }

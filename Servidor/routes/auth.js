@@ -11,10 +11,10 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/verifyEmailExist', async (req, res) => {
+router.get('/verifyInfo', async (req, res) => {
   try {
-    const { q } = req.query;
-    const exist = await loginC.verifyEmail(q);
+    const { q, type } = req.query;
+    const exist = await loginC.verifyData(q, type);
     res.json(exist[0].exist);
   } catch (err) {
     console.warn(err);
