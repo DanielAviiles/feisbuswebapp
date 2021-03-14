@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 // rutas
 app.use(require('./routes'));
-app.use('/api/service/authentication',require('./routes/auth'));
+app.use('/api/service/authentication',require('./routes/auth')); // Completo
 app.use('/api/service/data-basic-user',require('./routes/index'));
 app.use('/api/service/posteos',require('./routes/index'));
 
