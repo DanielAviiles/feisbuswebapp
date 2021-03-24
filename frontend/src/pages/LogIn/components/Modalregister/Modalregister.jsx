@@ -35,7 +35,7 @@ const Modalregister = () => {
                 <button className="btn btn-secondary btn-sm d-inline-flex">p</button>
               </div>
               <div className="col">
-                <div className="col-auto d-inline-flex">
+                <div className="col-auto">
                   <select name="dia" className="form-select">
                     { days.map((item, i) => (<option key={i}>{item}</option>)) }
                   </select>
