@@ -21,30 +21,30 @@ const Modalregister = () => {
                 <input type="text" placeholder="Nombres" className="form-control me-3 bg-inputs-da"/>
                 <input type="text" placeholder="Apellidos" className="form-control bg-inputs-da"/>
               </div>
-              <div>
-                <input type="email" placeholder="Correo electrónico" className="form-control bg-inputs-da"/>
-              </div>
-              <div>
-                <input type="text" placeholder="Número de celular" className="form-control bg-inputs-da"/>
-              </div>
-              <div>
-                <input type="password" placeholder="Contraseña nueva" className="form-control bg-inputs-da"/>
-              </div>
-              <div className="col-auto">
-                <p className="fs-6 text-black-50">Fecha de nacimiento</p>
-                <button className="btn btn-secondary btn-sm d-inline-flex">p</button>
-              </div>
               <div className="col">
-                <div className="col-auto">
-                  <select name="dia" className="form-select">
-                    { days.map((item, i) => (<option key={i}>{item}</option>)) }
-                  </select>
-                  <select name="mes" className="form-select">
-                    { days.map((item, i) => (<option key={i}>{item}</option>)) }
-                  </select>
-                  <select name="year" className="form-select">
-                    { days.map((item, i) => (<option key={i}>{item}</option>)) }
-                  </select>
+                <input type="email" placeholder="Correo electrónico" className="form-control bg-inputs-da mb-3"/>
+                <input type="text" placeholder="Número de celular" className="form-control bg-inputs-da mb-3"/>
+                <input type="password" placeholder="Contraseña nueva" className="form-control bg-inputs-da mb-3"/>
+              </div>
+              <div className="row">
+                <div className="col-12 d-inline-flex">
+                  <p className="fs-6 text-black-50 me-2">Fecha de nacimiento</p>
+                  <button className="btn btn-secondary btn-sm d-inline-flex rounded-circle" id="questionBtn">
+                    <i className="fas fa-question-circle"></i>
+                  </button>
+                </div>
+                <div className="col-12">
+                  <div className="col-auto">
+                    <select name="dia" className="form-select">
+                      { days.map((item, i) => (<option key={i}>{item}</option>)) }
+                    </select>
+                    <select name="mes" className="form-select">
+                      { days.map((item, i) => (<option key={i}>{item}</option>)) }
+                    </select>
+                    <select name="year" className="form-select">
+                      { days.map((item, i) => (<option key={i}>{item}</option>)) }
+                    </select>
+                  </div>
                 </div>
               </div>
             </form>
