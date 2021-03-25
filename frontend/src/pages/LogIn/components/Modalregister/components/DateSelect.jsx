@@ -27,9 +27,7 @@ const DateSelect = () => {
     <div className="col-12 d-inline-flex">
       <select className="form-select me-3" name="dia"
         value={dia} onChange={handleChange}>
-        {
-          dias.map((item, i) => (<option key={i} value={item}>{item}</option>))
-        }
+        { dias.map((item, i) => (<option key={i} value={item}>{item}</option>)) }
       </select>
       <select className="form-select me-3" name="mes"
         value={mes} onChange={handleChange}>
