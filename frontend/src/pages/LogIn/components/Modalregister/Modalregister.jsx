@@ -2,6 +2,7 @@ import React from 'react';
 import './Modalregister.css';
 import PopoverBtn from './components/PopoverBtn';
 import DateSelect from './components/DateSelect';
+import RadioBtnGen from './components/RadioBtnGen';
 
 const Modalregister = () => {
   return (
@@ -44,6 +45,11 @@ const Modalregister = () => {
                 <div className="col-12 d-inline-flex">
                   <p className="fs-6 text-black-50 me-2">Sexo</p>
                   <PopoverBtn />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <RadioBtnGen/>
                 </div>
               </div>
             </form>
