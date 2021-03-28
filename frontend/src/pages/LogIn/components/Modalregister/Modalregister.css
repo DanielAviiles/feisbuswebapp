@@ -3,8 +3,15 @@
   background: #F2F2F2 !important;
 }
 
-.questionBtn {
-  height: 25px;
+.questionBtnPopover {
+  height: 15px; width: 15px;
+  padding: 0; border: 0;
+  border-radius: 50%;
+  background-color: #777;
+  color: #fff;
+  justify-content: center !important;
+  font-size: 11.5px !important;
+  font-weight: bold;
 }
 
 .msg-politics {
@@ -23,4 +30,9 @@
   color: #fff;
   padding: 0 32px;
   height: 36px;
+}
+
+.font-info-da {
+  font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif !important;
+  font-size: 12.7px !important;
 }

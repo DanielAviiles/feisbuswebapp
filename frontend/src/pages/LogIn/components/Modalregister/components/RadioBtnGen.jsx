@@ -16,11 +16,11 @@ const RadioBtnGen = () => {
           )
           : (
             state.data.map((item, i) => (
-              <div className="form-check form-check-inline border border-dark-50 rounded p-0" key={i}>
+              <div className={`form-check border border-dark-50 rounded p-0 ${(i !== 2) && 'me-3'}`} key={i}>
                 <div className="p-2">
-                  <label className="form-check-label me-5">{item.nombre}</label>
+                  <label className="form-check-label ms-1 me-5">{item.nombre}</label>
                   <input className="form-check-input float-end" type="radio"
-                      name="genero" id={`inlineRadio${item.id}`} value={item.id}></input>
+                      name="genero" id={`inlineRadio${i}`} value={item.id}></input>
                 </div>
               </div>
             ))

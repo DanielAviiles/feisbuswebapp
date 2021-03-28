@@ -37,7 +37,7 @@ const Modalregister = () => {
               </div>
               <div className="row">
                 <div className="col-12 d-inline-flex">
-                  <p className="fs-6 text-black-50 me-2">Fecha de nacimiento</p>
+                  <p className="fs-6 text-black-50 mb-0 me-2 font-info-da">Fecha de nacimiento</p>
                   <PopoverBtn />
                 </div>
               </div>
@@ -46,12 +46,12 @@ const Modalregister = () => {
               </div>
               <div className="row">
                 <div className="col-12 d-inline-flex">
-                  <p className="fs-6 text-black-50 me-2">Sexo</p>
+                  <p className="fs-6 text-black-50 mb-0 me-2 font-info-da">Sexo</p>
                   <PopoverBtn />
                 </div>
               </div>
               <div className="row">
-                <div className="col-12">
+                <div className="col-12 d-flex justify-content-center">
                   <RadioBtnGen/>
                 </div>
               </div>
