@@ -1,8 +1,26 @@
 .bg-inputs-da {
-  background-color: #E8F0F5;
-  background: #E8F0F5 !important;
+  background-color: #F2F2F2;
+  background: #F2F2F2 !important;
 }
 
 .questionBtn {
   height: 25px;
+}
+
+.msg-politics {
+  color: #777;
+  font-family: inherit !important;
+  font-size: 11px !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+.bg-color-da {
+  font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif !important;
+  background-color: #00a400;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  padding: 0 32px;
+  height: 36px;
 }
