@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import axios from 'axios';
 
 /* 
   Implementado unicamente para peticiones GET
@@ -10,13 +11,10 @@ const useFetch = (url) => {
   const [state, setState] = useState({ loading: true, data: null })
   
   useEffect(() => {
-    fetch(url).then(res => res.json())
-      .then(data => {
-        setState({
-          loading: false,
-          data
-        })
-      });
+    axios.get(url).then((respApi) => {
+      const { data } = respApi;
+      setState({ loading: false, data })
+    });
   }, [url]);
 
   return state;

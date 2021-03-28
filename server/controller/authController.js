@@ -18,9 +18,11 @@ const registerUser = async (req) => {
   const newPerfil = { fecha_nacimiento, orientacion_sexual }
   return await authM.authRegister(newUser, newPerfil);
 }
+const getGeneros = async () => (await authM.infoGeneros());
 
 module.exports = {
   authLogin,
   verifyData,
-  registerUser
+  registerUser,
+  getGeneros
 }

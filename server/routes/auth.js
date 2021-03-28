@@ -40,4 +40,12 @@ router.post('/register', async (req, res) => {
   }
 });
 
+router.get('/info-generos', async (req, res) => {
+  try {
+    await authC.getGeneros().then((data) => res.json(data));
+  } catch (err) {
+    console.warn(err);
+  }
+});
+
 module.exports = router;

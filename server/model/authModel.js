@@ -53,9 +53,17 @@ const authRegister = async (newUser, newPerfil) => {
     console.warn(err);
   }
 }
+const infoGeneros = async () => {
+  try {
+    return await pool.query('SELECT * FROM orientacion_sexual');
+  } catch (err) {
+    return {status: 400, msg: err}
+  }
+}
 
 module.exports = {
   authLoginM,
   authRegister,
-  verifyInfo
+  verifyInfo,
+  infoGeneros
 }
