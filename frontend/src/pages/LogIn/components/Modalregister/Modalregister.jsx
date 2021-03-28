@@ -67,7 +67,7 @@ const Modalregister = () => {
               </div>
               <div className="row">
                 <div className="col-12 d-flex justify-content-center">
-                  <button className="btn bg-color-da" type="submit">Registrarte</button>
+                  <button className="btn bg-color-da text-white" type="submit">Registrarte</button>
                 </div>
               </div>
             </form>

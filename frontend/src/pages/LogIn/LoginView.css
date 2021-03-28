@@ -1,0 +1,60 @@
+body {
+  background-color: #f0f2f5;
+}
+
+.img-feisbus-da {
+  height: 106px;
+}
+
+.msg-bnd-da {
+  font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 32px;
+  width: 500px;
+}
+
+.btn-sesion-da {
+  background-color: #1877f2;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 48px;
+  padding: 0 16px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-register-da {
+  font-family: inherit;
+  border-radius: 6px;
+  background-color: #00a400;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  padding: 0 16px;
+  line-height: 48px;
+}
+
+.text-page-public {
+  font-size: 14px;
+}
+
+.link-forgot-passwd {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: inherit;
+  text-decoration: none;
+  color: #1877f2;
+}
+
+.card-login {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.input-login-card {
+  font-family: inherit;
+  border-radius: 6px;
+  font-size: 17px;
+  padding: 14px 16px;
+}
