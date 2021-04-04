@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const cors = require('cors');
 
 // inicio
 const app = express();
@@ -23,6 +24,7 @@ app.set('view engine', '.hbs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
 // variables globales
 app.use((req, res, next) => {
@@ -31,6 +33,7 @@ app.use((req, res, next) => {
     dando a entender que la respuesta de la API es de confianza y ademas
     agregandole el comodin * se podría usar en cualquier otro Fronted
   */
+  req.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });

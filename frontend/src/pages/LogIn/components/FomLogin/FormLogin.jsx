@@ -1,12 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 import '../../LoginView.css';
 
 const FormLogin = () => {
+  const [alertErr, setAlertErr] = useState(false);
   const [formLogin, setFormLogin] = useState({
     email: { value: '', err: false },
     passwd: { value: '', err: false },
   });
   const { email, passwd } = formLogin;
+
+  const login = useCallback(async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/authentication/login`,
+        { email: email.value, passwd: passwd.value }
+      );
+      if (data.exist === 0) {
+        setFormLogin({
+          email: { value: '', err: true },
+          passwd: { value: '', err: true }
+        });
+        setAlertErr(true);
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }, [email, passwd]);
 
   const submitLoginForm = (e) => {
     e.preventDefault();
@@ -17,11 +37,16 @@ const FormLogin = () => {
       });
       return;
     }
+    login();
   }
 
   useEffect(() => {
     const objInputEmail = document.getElementById('loginEmail');
     const objInputPasswd = document.getElementById('loginPasswd');
+
+    if (alertErr)
+      setTimeout(() => setAlertErr(false), 1000)
+
     const validateInputEmail = (e) => {
       if ((email.value).toString().trim() !== '') {
         setFormLogin({
@@ -69,14 +94,19 @@ const FormLogin = () => {
   return (
     <>
       <form onSubmit={submitLoginForm} className="needs-validation">
-        <div className="col- mb-3">
+        <div className="col-auto mb-3">
           <input type="text" className={`form-control input-login-card mb-3 ${(email.err) ? 'is-invalid' : ''}`}
             name="email" value={email.value} onChange={handleInputChange} id="loginEmail"
-            placeholder="Correo electrónico o número de telefono" required/>
+            placeholder="Correo electrónico o número de telefono"/>
           <input type="password" className={`form-control input-login-card ${(passwd.err) ? 'is-invalid' : ''}`}
             name="passwd" value={passwd.value} onChange={handleInputChange} id="loginPasswd"
-            placeholder="Contraseña"  required/>
+            placeholder="Contraseña"/>
         </div>
+        {(alertErr) && (
+          <div className="alert alert-danger" role="alert">
+            Credenciales invalidas. Vuelve a intentarlo
+          </div>
+        )}
         <div className="d-grid gap-2">
           <button type='submit' className="btn btn-sesion-da text-white">
             Iniciar sesión
