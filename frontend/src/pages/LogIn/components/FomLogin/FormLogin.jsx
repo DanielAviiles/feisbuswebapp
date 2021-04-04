@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
 import '../../LoginView.css';
 import { useHistory } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const FormLogin = () => {
   const [alertErr, setAlertErr] = useState(false);
