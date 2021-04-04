@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../LoginView.css';
+import { useHistory } from "react-router-dom";
 
 const FormLogin = () => {
   const [alertErr, setAlertErr] = useState(false);
+  const history = useHistory();
   const [formLogin, setFormLogin] = useState({
     email: { value: '', err: false },
     passwd: { value: '', err: false },
@@ -22,11 +24,14 @@ const FormLogin = () => {
           passwd: { value: '', err: true }
         });
         setAlertErr(true);
+        return;
       }
+      localStorage.setItem('idUserLoged', data.userLogin);
+      history.push('/');
     } catch (err) {
       console.warn(err);
     }
-  }, [email, passwd]);
+  }, [email, passwd, history]);
 
   const submitLoginForm = (e) => {
     e.preventDefault();
