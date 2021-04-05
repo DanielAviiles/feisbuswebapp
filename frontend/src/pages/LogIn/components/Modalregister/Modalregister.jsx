@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Modalregister.css';
 import PopoverBtn from './components/PopoverBtn';
 import DateSelect from './components/DateSelect';
@@ -6,6 +6,43 @@ import RadioBtnGen from './components/RadioBtnGen';
 import Ref from './components/Ref';
 
 const Modalregister = () => {
+  const [registerModal, setRegisterModal] = useState({
+    nombre: { value: '', err: false },
+    apellido: { value: '', err: false },
+    email: { value: '', err: false },
+    passwd: { value: '', err: false }
+  });
+  const { nombre, apellido, email, passwd } = registerModal;
+
+  const handleInputChange = ({ target }) => {
+    let data = null;
+    switch (target.name) {
+      case 'nombre':
+        data = nombre;
+        break;
+      case 'apellido':
+        data = apellido;
+        break;
+      case 'email':
+        data = email;
+        break;
+      case 'passwd':
+        data = passwd;
+        break;
+      default:
+        break;
+    }
+    setRegisterModal({
+      ...registerModal,
+      [target.name]: {...data, value: target.value}
+    })
+  }
+
+  const submitRegister = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  }
+
   const { REACT_APP_CONDI, REACT_APP_PDATOS, REACT_APP_PCOOKIES } = process.env;
 
   return (
@@ -20,18 +57,24 @@ const Modalregister = () => {
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
-            <form className="col-12 p-2">
+            <form className="col-12 p-2" onSubmit={submitRegister}>
               <div className="row mb-3">
                 <div className="col-auto d-inline-flex">
-                  <input type="text" placeholder="Nombre" className="form-control me-3 bg-inputs-da"/>
-                  <input type="text" placeholder="Apellido" className="form-control bg-inputs-da"/>
+                  <input type="text" placeholder="Nombre" name="nombre"
+                    onChange={handleInputChange} value={nombre.value}
+                    className="form-control me-3 bg-inputs-da" />
+                  <input type="text" placeholder="Apellido" name="apellido"
+                    onChange={handleInputChange} value={apellido.value}
+                    className="form-control bg-inputs-da" />
                 </div>
               </div>
               <div className="row">
                 <div className="col-12">
-                  <input type="text" placeholder="Número de celular o correo electrónico"
+                  <input type="text" onChange={handleInputChange} value={email.value}
+                    placeholder="Número de celular o correo electrónico" name="email"
                     className="form-control bg-inputs-da mb-3" />
-                  <input type="password" placeholder="Contraseña nueva"
+                  <input type="password" placeholder="Contraseña nueva" name="passwd"
+                    onChange={handleInputChange} value={passwd.value}
                     className="form-control bg-inputs-da mb-3" />
                 </div>
               </div>
