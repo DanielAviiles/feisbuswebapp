@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './Modalregister.css';
 import PopoverBtn from './components/PopoverBtn';
 import DateSelect from './components/DateSelect';
 import RadioBtnGen from './components/RadioBtnGen';
 import Ref from './components/Ref';
+import axios from 'axios';
 
 const Modalregister = () => {
+  const myDateRef = useRef();
+  const [msgErrEmail, setMsgErrEmail] = useState(null)
   const [registerModal, setRegisterModal] = useState({
     nombre: { value: '', err: false },
     apellido: { value: '', err: false },
@@ -13,6 +16,66 @@ const Modalregister = () => {
     passwd: { value: '', err: false }
   });
   const { nombre, apellido, email, passwd } = registerModal;
+
+  const verifyEmail = useCallback(async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/authentication/verifyInfo?q=${email.value}`);
+      return data;
+    } catch (err) {
+      console.warn(err);
+    }
+  }, [email]);
+
+  useEffect(() => {
+    const inputEmail = document.getElementById('emailReg');
+    const inputPasswd = document.getElementById('passwdReg');
+
+    const validateEmail = async (e) => {
+      if ((email.value).toString().trim() !== '') {
+        const data = await verifyEmail();
+        if (data !== 0) {
+          setRegisterModal({
+            ...registerModal,
+            email: { ...email, err: true }
+          });
+          setMsgErrEmail('*Registro existente, por favor digite uno nuevo');
+        } else {
+          setRegisterModal({
+            ...registerModal,
+            email: { ...email, err: false }
+          });
+        }
+      } else if (e.keyCode === 8 && email.value === '') {
+        setRegisterModal({
+          ...registerModal,
+          email: { ...email, err: true }
+        });
+        setMsgErrEmail('*Por favor completar este campo');
+      }
+    }
+
+    const validatePasswd = (e) => {
+      if ((passwd.value).toString().trim() !== '') {
+        let isCorrect = ((passwd.value).toString().length <= 6);
+        setRegisterModal({
+          ...registerModal,
+          passwd: { ...passwd, err: isCorrect }
+        });
+      } else if (e.keyCode === 8 && passwd.value === '') {
+        setRegisterModal({
+          ...registerModal,
+          passwd: { ...passwd, err: true }
+        });
+      }
+    }
+    inputEmail.addEventListener('keyup', validateEmail);
+    inputPasswd.addEventListener('keyup', validatePasswd);
+    return () => {
+      inputEmail.removeEventListener('keyup', validateEmail);
+      inputPasswd.removeEventListener('keyup', validatePasswd);
+    }
+  });
 
   const handleInputChange = ({ target }) => {
     let data = null;
@@ -40,7 +103,12 @@ const Modalregister = () => {
 
   const submitRegister = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const dateBorn = myDateRef.current.getMyState();
+    const mes = parseInt(dateBorn.mes);
+    setRegisterModal({
+      ...registerModal,
+      fechaNacimiento: `${dateBorn.year}-${mes+1}-${dateBorn.dia}`
+    });
   }
 
   const { REACT_APP_CONDI, REACT_APP_PDATOS, REACT_APP_PCOOKIES } = process.env;
@@ -70,12 +138,24 @@ const Modalregister = () => {
               </div>
               <div className="row">
                 <div className="col-12">
-                  <input type="text" onChange={handleInputChange} value={email.value}
-                    placeholder="Número de celular o correo electrónico" name="email"
-                    className="form-control bg-inputs-da mb-3" />
-                  <input type="password" placeholder="Contraseña nueva" name="passwd"
-                    onChange={handleInputChange} value={passwd.value}
-                    className="form-control bg-inputs-da mb-3" />
+                  <div className="mb-3">
+                    <input type="text" onChange={handleInputChange} value={email.value}
+                      placeholder="Número de celular o correo electrónico" name="email"
+                      className={`form-control bg-inputs-da ${(email.err) ? 'is-invalid' : ''}`}
+                      id="emailReg" aria-describedby="validateEmail"/>
+                    <div id="validateEmail" className="invalid-feedback">
+                      {msgErrEmail}
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <input type="password" placeholder="Contraseña nueva" name="passwd"
+                      onChange={handleInputChange} value={passwd.value}
+                      className={`form-control bg-inputs-da ${(passwd.err) ? 'is-invalid' : ''}`}
+                      id="passwdReg" aria-describedby="validatePasswd"/>
+                    <div id="validatePasswd" className="invalid-feedback">
+                      *Contraseña invalida! Por favor mas de 6 digitos.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="row">
@@ -85,7 +165,7 @@ const Modalregister = () => {
                 </div>
               </div>
               <div className="row mb-3">
-                <DateSelect />
+                <DateSelect ref={myDateRef} />
               </div>
               <div className="row">
                 <div className="col-12 d-inline-flex">

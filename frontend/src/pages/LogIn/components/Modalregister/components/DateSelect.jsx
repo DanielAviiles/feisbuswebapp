@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 
-const DateSelect = () => {
+const DateSelect = forwardRef((props, ref) => {
   const fullFecha = new Date();
 
   const [dateBorn, setDateBorn] = useState({
@@ -23,6 +23,8 @@ const DateSelect = () => {
     });
   }
 
+  useImperativeHandle(ref, () => ({ getMyState: () => dateBorn }), [dateBorn]);
+
   return (
     <div className="col-12 d-inline-flex">
       <select className="form-select me-3" name="dia"
@@ -39,6 +41,6 @@ const DateSelect = () => {
       </select>
     </div>
   )
-}
+})
 
 export default DateSelect

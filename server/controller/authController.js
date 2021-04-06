@@ -4,7 +4,7 @@ const authLogin = async (req) => {
   const { email, passwd } = req.body;
   return await authM.authLoginM(email, passwd);
 }
-const verifyData = async (query, type) => (await authM.verifyInfo(query, type));
+const verifyData = async (query) => (await authM.verifyInfo(query));
 const registerUser = async (req) => {
   const {
     nombres, apellidos,

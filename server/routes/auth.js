@@ -16,13 +16,10 @@ router.get('/verifyInfo', async (req, res) => {
   /* 
     QUERY PARAMETERS
     (q) => la consulta de email o cel que se desea realizar
-    (type) => el tipo de busqueda, solo hay 2 tipos. 
-      "email" solo busca por ese tipado
-      "cel" colo busca por ese tipado
   */
   try {
-    const { q, type } = req.query;
-    await authC.verifyData(q, type)
+    const { q } = req.query;
+    await authC.verifyData(q)
       .then((data) => res.json(data[0].exist))
       .catch((err) => console.error(err));
   } catch (err) {
