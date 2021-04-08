@@ -33,8 +33,8 @@ app.use((req, res, next) => {
     dando a entender que la respuesta de la API es de confianza y ademas
     agregandole el comodin * se podría usar en cualquier otro Fronted
   */
-  req.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Origin', '*');
+  // req.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 

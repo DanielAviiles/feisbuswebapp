@@ -23,7 +23,7 @@ const DateSelect = forwardRef((props, ref) => {
     });
   }
 
-  useImperativeHandle(ref, () => ({ getMyState: () => dateBorn }), [dateBorn]);
+  useImperativeHandle(ref, () => ({ getDate: () => dateBorn }), [dateBorn]);
 
   return (
     <div className="col-12 d-inline-flex">
