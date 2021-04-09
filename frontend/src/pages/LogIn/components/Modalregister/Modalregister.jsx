@@ -140,11 +140,27 @@ const Modalregister = () => {
     })
   }
 
+  const validateRegister = () => {
+    if ((nombre.value).toString() === '')
+      setRegisterModal({ ...registerModal, nombre: { ...nombre, err: true } });
+    if ((apellido.value).toString() === '')
+      setRegisterModal({ ...registerModal, apellido: { ...apellido, err: true } });
+    if ((email.value).toString() === '')
+      setRegisterModal({ ...registerModal, email: { ...email, err: true } });
+    if ((passwd.value).toString() === '')
+      setRegisterModal({ ...registerModal, passwd: { ...passwd, err: true } });
+  }
+
   const submitRegister = (e) => {
     e.preventDefault();
     const dateBorn = myDateRef.current.getDate();
     const mes = parseInt(dateBorn.mes);
     const genero = infoGenero.current.getGenero();
+    validateRegister();
+    if (genero === null) {
+      infoGenero.current.getErr = true;
+      return;
+    }
     setRegisterModal({
       ...registerModal,
       fechaNacimiento: `${dateBorn.year}-${mes + 1}-${dateBorn.dia}`,

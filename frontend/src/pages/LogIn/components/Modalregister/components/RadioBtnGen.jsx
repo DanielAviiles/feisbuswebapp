@@ -6,10 +6,18 @@ const { REACT_APP_API } = process.env;
 const RadioBtnGen = forwardRef((props, ref) => {
   const state = useFetch(`${REACT_APP_API}/authentication/info-generos`);
   const [genero, setGenero] = useState(null);
+  const [err, setErr] = useState(false);
 
   const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-  const handleInputChanged = ({ target }) => setGenero(target.value);
-  useImperativeHandle(ref, () => ({ getGenero: () => genero }), [genero]);
+  const handleInputChanged = ({ target }) => {
+    setGenero(target.value);
+    if (err === true) setErr(false);
+  }
+
+  useImperativeHandle(ref, () => ({
+    getGenero: () => genero,
+    getErr: () => err
+  }), [genero, err]);
 
   return (
     <>
@@ -24,7 +32,9 @@ const RadioBtnGen = forwardRef((props, ref) => {
           )
           : (
             state.data.map((item, i) => (
-              <div className={`form-check border border-dark-50 rounded p-0 ${(i !== 2) && 'me-3'}`} key={i}>
+              <div className={`form-check rounded p-0 border 
+                  ${(err === false) ? 'border-dark-50' : 'border-danger'}
+                  ${(i !== 2) && 'me-3'}`} key={i}>
                 <div className="p-2">
                   <label className="form-check-label ms-1 me-5">{toCapitalize(item.nombre)}</label>
                   <input className="form-check-input float-end" type="radio"
