@@ -1,12 +1,16 @@
 import React from 'react'
+import Navbar from '../../components/Navbar';
 
 const HomeView = () => {
   return (
-    <div className="container-fluid">
-      <div className="p-5">
-        <h1>Hola mundo</h1>
+    <>
+      <Navbar />
+      <div className="container-fluid">
+        <div className="p-5">
+          <h1>Hola mundo</h1>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -30,114 +30,92 @@ const Modalregister = () => {
   }, [email]);
 
   useEffect(() => {
-    const inputEmail = document.getElementById('emailReg');
-    const inputPasswd = document.getElementById('passwdReg');
-    const inputNombre = document.getElementById('nombreReg');
-    const inputApellido = document.getElementById('apellidoReg');
-
-    const validateEmail = async (e) => {
-      if ((email.value).toString().trim() !== '') {
-        const data = await verifyEmail();
-        if (data !== 0) {
-          setRegisterModal({
-            ...registerModal,
-            email: { ...email, err: true }
-          });
-          setMsgErrEmail('*Registro existente, por favor digite uno nuevo');
+    if (email.value.trim() !== '') {
+      verifyEmail().then((resp) => {
+        if (resp !== 0) {
+          if (email.err === false) {
+            setRegisterModal((current) => ({
+              ...current,
+              email: {...email, err: true}
+            }));
+            setMsgErrEmail('*Registro existente, por favor digite uno nuevo');
+          }
         } else {
-          setRegisterModal({
-            ...registerModal,
-            email: { ...email, err: false }
-          });
+          if (email.err) {
+            setRegisterModal((current) => ({
+              ...current,
+              email: {...email, err: false}
+            }));
+            setMsgErrEmail(null);
+          }
         }
-      } else if (e.keyCode === 8 && email.value === '') {
-        setRegisterModal({
-          ...registerModal,
-          email: { ...email, err: true }
-        });
-        setMsgErrEmail('*Por favor completar este campo');
+      });
+    }
+  }, [email, verifyEmail]);
+
+  useEffect(() => {
+    if (passwd.value.trim() !== '') {
+      if (passwd.value.length < 7) {
+        if (passwd.err === false) {
+          setRegisterModal((current) => ({
+            ...current,
+            passwd: { ...passwd, err: true }
+          }));
+        }
+      } else {
+        if (passwd.err) {
+          setRegisterModal((current) => ({
+            ...current,
+            passwd: { ...passwd, err: false }
+          }));
+        }
       }
     }
+  }, [passwd]);
 
-    const validatePasswd = (e) => {
-      if ((passwd.value).toString().trim() !== '') {
-        let isCorrect = ((passwd.value).toString().length <= 6);
-        setRegisterModal({
-          ...registerModal,
-          passwd: { ...passwd, err: isCorrect }
-        });
-      } else if (e.keyCode === 8 && passwd.value === '') {
-        setRegisterModal({
-          ...registerModal,
-          passwd: { ...passwd, err: true }
-        });
-      }
-    }
-
-    const validateInputsFullName = (e) => {
-      if (e.target.name === 'nombre') {
-        if ((nombre.value).toString().trim() !== '') {
-          let isCorrect = ((nombre.value).toString().length < 2);
-          setRegisterModal({
-            ...registerModal,
-            nombre: { ...nombre, err: isCorrect }
-          });
-        } else if (e.keyCode === 8 && nombre.value === '') {
-          setRegisterModal({
-            ...registerModal,
+  useEffect(() => {
+    if ((nombre.value).trim() !== '') {
+      if (nombre.value.length < 3) {
+        if (nombre.err === false) {
+          setRegisterModal((current) => ({
+            ...current,
             nombre: { ...nombre, err: true }
-          });
+          }));
         }
-      } else if (e.target.name === 'apellido') {
-        if ((apellido.value).toString().trim() !== '') {
-          let isCorrect = ((apellido.value).toString().length < 2);
-          setRegisterModal({
-            ...registerModal,
-            apellido: { ...apellido, err: isCorrect }
-          });
-        } else if (e.keyCode === 8 && apellido.value === '') {
-          setRegisterModal({
-            ...registerModal,
-            apellido: { ...apellido, err: true }
-          });
+      } else {
+        if (nombre.err) {
+          setRegisterModal((current) => ({
+            ...current,
+            nombre: { ...nombre, err: false }
+          }));
         }
       }
     }
-    
-    inputEmail.addEventListener('keyup', validateEmail);
-    inputPasswd.addEventListener('keyup', validatePasswd);
-    inputNombre.addEventListener('keyup', validateInputsFullName);
-    inputApellido.addEventListener('keyup', validateInputsFullName);
-    return () => {
-      inputEmail.removeEventListener('keyup', validateEmail);
-      inputPasswd.removeEventListener('keyup', validatePasswd);
-      inputNombre.removeEventListener('keyup', validateInputsFullName);
-      inputApellido.removeEventListener('keyup', validateInputsFullName);
+
+    if ((apellido.value).trim() !== '') {
+      if (apellido.value.length < 3) {
+        if (apellido.err === false) {
+          setRegisterModal((current) => ({
+            ...current,
+            apellido: { ...apellido, err: true }
+          }));
+        }
+      } else {
+        if (apellido.err) {
+          setRegisterModal((current) => ({
+            ...current,
+            apellido: { ...apellido, err: false }
+          }));
+        }
+      }
     }
-  });
+  }, [nombre, apellido]);
 
   const handleInputChange = ({ target }) => {
-    let data = null;
-    switch (target.name) {
-      case 'nombre':
-        data = nombre;
-        break;
-      case 'apellido':
-        data = apellido;
-        break;
-      case 'email':
-        data = email;
-        break;
-      case 'passwd':
-        data = passwd;
-        break;
-      default:
-        break;
-    }
-    setRegisterModal({
-      ...registerModal,
-      [target.name]: {...data, value: target.value}
-    })
+    setRegisterModal((current) => ({
+      ...current,
+      [target.name]: { ...current[target.name], value: target.value }
+    }));
   }
 
   const validateRegister = () => {
