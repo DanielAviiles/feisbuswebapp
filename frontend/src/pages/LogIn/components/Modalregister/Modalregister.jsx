@@ -50,6 +50,14 @@ const Modalregister = () => {
           }
         }
       });
+    } else {
+      if (email.err) {
+        setRegisterModal((current) => ({
+          ...current,
+          email: {...email, err: false}
+        }));
+        setMsgErrEmail(null);
+      }
     }
   }, [email, verifyEmail]);
 
@@ -119,14 +127,22 @@ const Modalregister = () => {
   }
 
   const validateRegister = () => {
-    if ((nombre.value).toString() === '')
+    if (nombre.value.trim() === '') {
       setRegisterModal({ ...registerModal, nombre: { ...nombre, err: true } });
-    if ((apellido.value).toString() === '')
+      return;
+    }
+    if (apellido.value.trim() === '') {
       setRegisterModal({ ...registerModal, apellido: { ...apellido, err: true } });
-    if ((email.value).toString() === '')
+      return;
+    }
+    if (email.value.trim() === '') {
       setRegisterModal({ ...registerModal, email: { ...email, err: true } });
-    if ((passwd.value).toString() === '')
+      return;
+    }
+    if (passwd.value.trim() === '') {
       setRegisterModal({ ...registerModal, passwd: { ...passwd, err: true } });
+      return;
+    }
   }
 
   const submitRegister = (e) => {
