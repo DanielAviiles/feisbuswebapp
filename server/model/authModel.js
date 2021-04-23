@@ -49,7 +49,7 @@ const infoGeneros = async () => {
   try {
     return await pool.query('SELECT * FROM orientacion_sexual');
   } catch (err) {
-    return {status: 400, msg: err}
+    return { status: 400, msg: err };
   }
 }
 

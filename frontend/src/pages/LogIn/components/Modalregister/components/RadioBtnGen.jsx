@@ -6,7 +6,7 @@ const { REACT_APP_API } = process.env;
 const RadioBtnGen = forwardRef((props, ref) => {
   const state = useFetch(`${REACT_APP_API}/authentication/info-generos`);
   const [genero, setGenero] = useState(null);
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState(true);
 
   const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const handleInputChanged = ({ target }) => {
@@ -15,9 +15,8 @@ const RadioBtnGen = forwardRef((props, ref) => {
   }
 
   useImperativeHandle(ref, () => ({
-    getGenero: () => genero,
-    getErr: () => err
-  }), [genero, err]);
+    getGenero: () => genero
+  }), [genero]);
 
   return (
     <>

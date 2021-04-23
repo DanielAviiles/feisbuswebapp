@@ -11,10 +11,7 @@ const registerUser = async (req) => {
     email, celular, passwd,
     fecha_nacimiento, orientacion_sexual
   } = req.body;
-  const newUser = {
-    nombres, apellidos,
-    email, celular, passwd,
-  }
+  const newUser = { nombres, apellidos, email, celular, passwd }
   const newPerfil = { fecha_nacimiento, orientacion_sexual }
   return await authM.authRegister(newUser, newPerfil);
 }

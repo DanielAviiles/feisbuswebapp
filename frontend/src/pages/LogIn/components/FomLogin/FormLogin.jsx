@@ -53,7 +53,7 @@ const FormLogin = () => {
       setTimeout(() => setAlertErr(false), 1000)
 
     const validateInputEmail = (e) => {
-      if ((email.value).toString().trim() !== '') {
+      if (email.value.trim() !== '') {
         setFormLogin({
           ...formLogin,
           email: { ...email, err: false }
@@ -67,7 +67,7 @@ const FormLogin = () => {
     }
 
     const validateInputPasswd = (e) => {
-      if ((passwd.value).toString().trim() !== '') {
+      if (passwd.value.trim() !== '') {
         setFormLogin({
           ...formLogin,
           passwd: { ...passwd, err: false }
@@ -89,11 +89,10 @@ const FormLogin = () => {
   });
 
   const handleInputChange = ({ target }) => {
-    let data = ([target.name] === 'email') ? email : passwd;
-    setFormLogin({
-      ...formLogin,
-      [target.name]: { ...data, value: target.value }
-    })
+    setFormLogin((current) => ({
+      ...current,
+      [target.name]: { ...current[target.name], value: target.value }
+    }));
   }
 
   return (

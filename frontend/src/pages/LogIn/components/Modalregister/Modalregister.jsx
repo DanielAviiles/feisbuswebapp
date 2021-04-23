@@ -5,12 +5,14 @@ import DateSelect from './components/DateSelect';
 import RadioBtnGen from './components/RadioBtnGen';
 import Ref from './components/Ref';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 const { REACT_APP_CONDI, REACT_APP_PDATOS, REACT_APP_PCOOKIES, REACT_APP_API } = process.env;
 const endpointAuth = `${REACT_APP_API}/authentication`;
 
 const Modalregister = () => {
-  const myDateRef = useRef(); const infoGenero = useRef();
+  const myDateRef = useRef(), infoGenero = useRef();
+  let history = useHistory();
   const [msgErrEmail, setMsgErrEmail] = useState(null)
   const [registerModal, setRegisterModal] = useState({
     nombre: { value: '', err: false },
@@ -25,7 +27,7 @@ const Modalregister = () => {
       const { data } = await axios.get(`${endpointAuth}/verifyInfo?q=${email.value}`);
       return data;
     } catch (err) {
-      console.warn(err);
+      return console.warn(err);
     }
   }, [email]);
 
@@ -145,21 +147,32 @@ const Modalregister = () => {
     }
   }
 
-  const submitRegister = (e) => {
-    e.preventDefault();
+  const registerUser = useCallback(async () => {
     const dateBorn = myDateRef.current.getDate();
-    const mes = parseInt(dateBorn.mes);
-    const genero = infoGenero.current.getGenero();
-    validateRegister();
-    if (genero === null) {
-      infoGenero.current.getErr = true;
-      return;
+    const mes = parseInt(dateBorn.mes) + 1;
+    const genero = parseInt(infoGenero.current.getGenero(), 10);
+    try {
+      const { data } = await axios.post(`${endpointAuth}/register`, {
+        nombres: nombre.value,
+        apellidos: apellido.value,
+        email: email.value,
+        passwd: passwd.value,
+        fecha_nacimiento: `${dateBorn.year}-${mes}-${dateBorn.dia}`,
+        orientacion_sexual: genero
+      });
+      console.log(data);
+    } catch (err) {
+      console.warn(err);
     }
-    setRegisterModal({
-      ...registerModal,
-      fechaNacimiento: `${dateBorn.year}-${mes + 1}-${dateBorn.dia}`,
-      genero
-    });
+  }, [nombre, apellido, email, passwd]);
+
+  const submitRegister = async (e) => {
+    e.preventDefault();
+    validateRegister();
+    if (msgErrEmail != null) return;
+    if (infoGenero.current.getGenero() === null) return;
+    await registerUser().then(() => history.push('/'));
+
   }
 
   return (
