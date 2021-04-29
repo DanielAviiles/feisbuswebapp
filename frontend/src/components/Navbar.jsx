@@ -1,10 +1,19 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router';
 import { AuthContext } from '../auth/AuthContext';
+import { types } from '../types/types';
 
 const imgNav = 'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg';
 
 const Navbar = () => {
-  const { user: { userLogin } } = useContext(AuthContext);
+  const history = useHistory();
+  const { user: { userLogin }, dispatch } = useContext(AuthContext);
+  const handleLogout = () => {
+    dispatch({
+      type: types.logout
+    });
+    history.replace('/login');
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,16 +32,16 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="btn-group">
+            <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               Action
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#a">Action</a></li>
-              <li><a class="dropdown-item" href="#a">Another action</a></li>
-              <li><a class="dropdown-item" href="#a">Something else here</a></li>
+            <ul className="dropdown-menu dropdown-menu-end">
+              <li><a className="dropdown-item" href="#a">Action</a></li>
+              <li><a className="dropdown-item" href="#a">Another action</a></li>
+              <li><a className="dropdown-item" href="#a">Something else here</a></li>
               {/* <li><hr class="dropdown-divider"></li> */}
-              <li><a class="dropdown-item" href="#a">Separated link</a></li>
+              <li><button className="btn" onClick={handleLogout}>Botno</button></li>
             </ul>
           </div>
         </div>

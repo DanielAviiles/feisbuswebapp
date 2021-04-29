@@ -1,21 +1,21 @@
+import { useContext } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
+  Switch
 } from "react-router-dom";
-import HomeView from "../pages/Home/HomeView";
+import { AuthContext } from "../auth/AuthContext";
 import LoginView from "../pages/LogIn/LoginView";
+import { DashBoardRoutes } from "./DashBoardRoutes";
+import { PublicRoute } from "./PublicRoute";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const Routerapp = () => {
+  const { user } = useContext(AuthContext);
   return (
     <Router>
       <Switch>
-        <Route path="/authentication">
-          <LoginView/>
-        </Route>
-        <Route path="/">
-          <HomeView />
-        </Route>
+        <PublicRoute exact path="/login" component={LoginView} isAuthenticated={user.logged} />
+        <PrivateRoute path="/" component={DashBoardRoutes} isAuthenticated={user.logged}/>
       </Switch>
     </Router>
   )

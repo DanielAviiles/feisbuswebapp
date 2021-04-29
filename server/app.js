@@ -28,21 +28,12 @@ app.use(cors());
 
 // variables globales
 app.use((req, res, next) => {
-  /* 
-    Descativa la politica de CORS a cada peticion que se realiza al backend
-    dando a entender que la respuesta de la API es de confianza y ademas
-    agregandole el comodin * se podría usar en cualquier otro Fronted
-  */
-  // req.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
 // rutas
-app.use(require('./routes'));
+app.use('/api/service/aboutuser', require('./routes')); // En proceso ...
 app.use('/api/service/authentication',require('./routes/auth')); // Completo
-app.use('/api/service/data-basic-user',require('./routes/index'));
-app.use('/api/service/posteos',require('./routes/index'));
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));
