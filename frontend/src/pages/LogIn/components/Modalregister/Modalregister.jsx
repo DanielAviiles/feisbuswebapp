@@ -171,17 +171,24 @@ const Modalregister = () => {
     validateRegister();
     if (msgErrEmail != null) return;
     if (infoGenero.current.getGenero() === null) return;
-    await registerUser().then(() => history.push('/'));
-
+    // const modalRegister = document.getElementById('registerModal');
+    await registerUser().then(() => {
+      // modalRegister.hidden();
+      setTimeout(() => {
+        history.push('/');
+      }, 800);
+    });
+    // document.getElementById('registerModal')
+    // ("#registerModal").modal('hide');
   }
 
   return (
-    <div className="modal fade" id="exampleModal" aria-hidden="true">
+    <div className="modal fade" id="registerModal" aria-hidden="true" tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header pt-2 pb-0 align-items-baseline">
             <div className="row">
-              <h3 className="modal-title" id="exampleModalLabel">Registrarte</h3>
+              <h3 className="modal-title" id="registerModalLabel">Registrarte</h3>
               <p className="text-black-50">Es rápido y fácil</p>
             </div>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

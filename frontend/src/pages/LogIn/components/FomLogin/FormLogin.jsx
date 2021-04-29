@@ -1,9 +1,12 @@
 import '../../LoginView.css';
 import { useHistory } from "react-router-dom";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../../../auth/AuthContext';
+import { types } from '../../../../types/types';
 
 const FormLogin = () => {
+  const { dispatch } = useContext(AuthContext);
   const [alertErr, setAlertErr] = useState(false);
   const history = useHistory();
   const [formLogin, setFormLogin] = useState({
@@ -27,11 +30,16 @@ const FormLogin = () => {
         return;
       }
       localStorage.setItem('idUserLoged', data.userLogin);
+      let userLogin = data.userLogin;
+      dispatch({
+        type: types.login,
+        payload: { userLogin }
+      });
       history.push('/');
     } catch (err) {
       console.warn(err);
     }
-  }, [email, passwd, history]);
+  }, [email, passwd, history, dispatch]);
 
   const submitLoginForm = (e) => {
     e.preventDefault();

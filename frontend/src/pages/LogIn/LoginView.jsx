@@ -17,7 +17,7 @@ const LoginView = () => {
                 <hr />
                 <div className="row p-2">
                   <div className="col-12 d-flex justify-content-center">
-                    <button type="button" className="btn btn-register-da text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" className="btn btn-register-da text-white" data-bs-toggle="modal" data-bs-target="#registerModal">
                       Crear cuenta nueva
                     </button>
                     <Modalregister />
