@@ -12,7 +12,10 @@ const registerUser = async (req) => {
     fecha_nacimiento, orientacion_sexual
   } = req.body;
   const newUser = { nombres, apellidos, email, celular, passwd }
-  const newPerfil = { fecha_nacimiento, orientacion_sexual }
+  const newPerfil = {
+    fecha_nacimiento,
+    orientacion_sexual_id: orientacion_sexual
+  }
   return await authM.authRegister(newUser, newPerfil);
 }
 const getGeneros = async () => (await authM.infoGeneros());

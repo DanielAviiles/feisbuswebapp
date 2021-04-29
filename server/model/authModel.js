@@ -30,17 +30,15 @@ const verifyInfo = async (query) => {
 }
 const authRegister = async (newUser, newPerfil) => {
   try {
-    await pool.query('INSERT INTO usuario SET ?', [newUser])
-      .then(async (res) => {
-        let datosPerfil = {
-          usuario_id: res.insertId,
-          fecha_nacimiento: newPerfil.fecha_nacimiento,
-          orientacion_sexual_id: newPerfil.orientacion_sexual
-        }
-        await pool.query('INSERT INTO perfil SET ?', [datosPerfil])
-          .then((res) => console.log(`REGISTRO EXITOSO DE PERFIL N${res.insertId}`))
-          .catch((err) => console.error(err));
-    }).catch((err) => console.error(err));
+    const user = await pool.query('INSERT INTO usuario SET ?', [newUser]);
+    console.log(`REGISTRO EXITOSO DE USUARIO N${user.insertId}`);
+    let datosPerfil = {
+      usuario_id: user.insertId,
+      ...newPerfil
+    }
+    const userProfile = await pool.query('INSERT INTO perfil SET ?', [datosPerfil]);
+    console.log(`REGISTRO EXITOSO DE PERFIL N${userProfile.insertId}`);
+    return user.insertId;
   } catch (err) {
     console.warn(err);
   }

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import './Modalregister.css';
 import PopoverBtn from './components/PopoverBtn';
 import DateSelect from './components/DateSelect';
@@ -6,11 +6,14 @@ import RadioBtnGen from './components/RadioBtnGen';
 import Ref from './components/Ref';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { AuthContext } from '../../../../auth/AuthContext';
+import { types } from '../../../../types/types';
 
 const { REACT_APP_CONDI, REACT_APP_PDATOS, REACT_APP_PCOOKIES, REACT_APP_API } = process.env;
 const endpointAuth = `${REACT_APP_API}/authentication`;
 
 const Modalregister = () => {
+  const { dispatch } = useContext(AuthContext);
   const myDateRef = useRef(), infoGenero = useRef();
   let history = useHistory();
   const [msgErrEmail, setMsgErrEmail] = useState(null)
@@ -161,10 +164,16 @@ const Modalregister = () => {
         orientacion_sexual: genero
       });
       console.log(data);
+      localStorage.setItem('idUserLoged', data.insertId);
+      let userLogin = data.insertId;
+      dispatch({
+        type: types.login,
+        payload: { userLogin }
+      });
     } catch (err) {
       console.warn(err);
     }
-  }, [nombre, apellido, email, passwd]);
+  }, [nombre, apellido, email, passwd, dispatch]);
 
   const submitRegister = async (e) => {
     e.preventDefault();
@@ -175,7 +184,7 @@ const Modalregister = () => {
     await registerUser().then(() => {
       // modalRegister.hidden();
       setTimeout(() => {
-        history.push('/');
+        history.replace('/');
       }, 800);
     });
     // document.getElementById('registerModal')

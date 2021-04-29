@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const infoModel = require('../model/baseInfoModel');
 
 /* GET home page. */
-router.get('/datauser/:userid', async (req, res) => {
+router.get('/:userid', async (req, res) => {
   // Se consultara la informacion de la tabla usuario y perfil del usuario logueado
   const { userid } = req.params;
-  res.json();
+  try {
+    const dataUser = await infoModel.baseInfoUserModel(userid);
+    res.json({ dataUser });
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 router.get('/infouser', async (req, res) => {

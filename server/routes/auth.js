@@ -30,8 +30,8 @@ router.get('/verifyInfo', async (req, res) => {
 router.post('/register', async (req, res) => {
   try {
     await authC.registerUser(req)
-      .then(() => res.json({status: 1, msg: 'Success'}))
-      .catch((err) => res.json({status: 0, msg: `Error ${err}`}));
+      .then((data) => res.json({status: 200, msg: 'Success', insertId: data}))
+      .catch((err) => res.json({status: 400, msg: `Error:: ${err}`}));
   } catch (err) {
     console.warn(err);
   }
