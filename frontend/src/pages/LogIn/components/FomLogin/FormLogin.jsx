@@ -31,11 +31,12 @@ const FormLogin = () => {
       }
       localStorage.setItem('idUserLoged', data.userLogin);
       let userLogin = data.userLogin;
+      const lastPath = localStorage.getItem('lastPath') || '/';
       dispatch({
         type: types.login,
         payload: { userLogin }
       });
-      history.push('/');
+      history.push(lastPath);
     } catch (err) {
       console.warn(err);
     }

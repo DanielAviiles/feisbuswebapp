@@ -40,8 +40,7 @@ const Navbar = () => {
               <li><a className="dropdown-item" href="#a">Action</a></li>
               <li><a className="dropdown-item" href="#a">Another action</a></li>
               <li><a className="dropdown-item" href="#a">Something else here</a></li>
-              {/* <li><hr class="dropdown-divider"></li> */}
-              <li><button className="btn" onClick={handleLogout}>Botno</button></li>
+              <li><button className="btn" onClick={handleLogout}>Cerrrar sesión</button></li>
             </ul>
           </div>
         </div>

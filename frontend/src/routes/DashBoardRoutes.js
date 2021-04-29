@@ -7,10 +7,10 @@ export const DashBoardRoutes = () => {
   return (
     <>
       <Navbar />
-      <div class="container-fluid p-5">
+      <div className="container-fluid p-5">
         <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Redirect to="/"/>
+          <Route exact path="/dashboard" component={HomeView} />
+          <Redirect to="/dashboard"/>
         </Switch>
       </div>
     </>
