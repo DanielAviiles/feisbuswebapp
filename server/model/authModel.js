@@ -38,6 +38,9 @@ const authRegister = async (newUser, newPerfil) => {
     }
     const userProfile = await pool.query('INSERT INTO perfil SET ?', [datosPerfil]);
     console.log(`REGISTRO EXITOSO DE PERFIL N${userProfile.insertId}`);
+    const idpubli = await pool.query(`INSERT INTO publicacion SET perfil_id=${userProfile.insertId}`);
+    const imgDefault = await pool.query(`INSERT INTO foto SET publicacion_id=${idpubli.insertId}`);
+    await pool.query(`UPDATE perfil SET img_perfil=${imgDefault.insertId} WHERE id=${userProfile.insertId}`);
     return user.insertId;
   } catch (err) {
     console.warn(err);

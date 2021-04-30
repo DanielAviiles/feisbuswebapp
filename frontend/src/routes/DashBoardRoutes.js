@@ -19,17 +19,16 @@ export const DashBoardRoutes = () => {
     }
   }
 
-  // console.log(userData);
-
   useEffect(() => {
     consumeData();
   }, []);
   return (
     <>
-      <Navbar />
-      <div className="container-fluid p-5">
+      <Navbar dataUser={userData} />
+      <div className="container-fluid">
         <Switch>
-          <Route exact path="/dashboard" component={HomeView} />
+          <Route exact path="/dashboard"
+              render={(props) => <HomeView {...props} datauser={userData} />} />
           <Redirect to="/dashboard"/>
         </Switch>
       </div>

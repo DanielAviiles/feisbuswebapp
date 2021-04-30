@@ -3,10 +3,11 @@ import { useHistory } from 'react-router';
 import { AuthContext } from '../auth/AuthContext';
 import { types } from '../types/types';
 import '../assets/css/globaleStyles.css';
+import BtnGroup from './BtnGroup';
 
 const imgNav = 'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg';
 
-const Navbar = () => {
+const Navbar = ({dataUser}) => {
   const history = useHistory();
   const { /* user: { userLogin }, */ dispatch } = useContext(AuthContext);
   const handleLogout = () => {
@@ -22,32 +23,58 @@ const Navbar = () => {
           <a className="navbar-brand p-0 ms-2 me-2 " href="/">
             <img src={imgNav} alt="logo" className=" perso-logo-da"/>
           </a>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav me-5 mb-2 mb-lg-0">
               <li className="nav-item">
                 <div className="input-grup d-flex">
                   <div className="input-group-text group-input-da">
-                    <i className="fas fa-search"></i>
+                    <i className="fas fa-search color-icons-nav-da"></i>
                   </div>
                   <input type="text" className="form-control input-addons-perso-da" placeholder="Buscar en Facebook"/>
                 </div>
               </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" aria-current="page" href="/">Home</a>
+            </ul>
+            <ul className="navbar-nav justify-content-center ms-5 mb-lg-0">
+              <li className="nav-item ms-4 me-5">
+                <i className="fas fa-home fs-3 ms-2"></i>
+              </li>
+              <li className="nav-item ms-4 me-5">
+                <i className="far fa-tv fs-3 color-icons-nav-da"></i>
+              </li>
+              <li className="nav-item ms-4 me-5">
+                <i className="fas fa-store fs-3 color-icons-nav-da"></i>
+              </li>
+              <li className="nav-item ms-4 me-5 border border-3 border-color-nav-da rounded-circle">
+                <i className="fas fa-users fs-5 color-icons-nav-da p-1"></i>
+              </li>
+              <li className="nav-item ms-4">
+                <img src="https://img.icons8.com/material-outlined/50/8C8C8C/facebook-gaming.png" width="32" alt="FG"/>
               </li>
             </ul>
           </div>
-
-          <div className="btn-group">
-            <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Action
-            </button>
-            <ul className="dropdown-menu dropdown-menu-end">
-              <li><a className="dropdown-item" href="#a">Action</a></li>
-              <li><a className="dropdown-item" href="#a">Another action</a></li>
-              <li><a className="dropdown-item" href="#a">Something else here</a></li>
-              <li><button className="btn" onClick={handleLogout}>Cerrrar sesión</button></li>
-            </ul>
+          
+          <div className="ps-4">
+            <div className="btn-group me-4">
+              <button className="btn">
+                <img src={dataUser.imgUrlPerfil} width="35" alt="profileimg" className="rounded-circle"/>
+                <strong className="ms-2">{ dataUser.nombres }</strong>
+              </button>
+            </div>
+            <BtnGroup iconBtn="fas fa-plus"/>
+            <BtnGroup iconBtn="fab fa-facebook-messenger"/>
+            <BtnGroup iconBtn="fas fa-bell" />
+            <div className="btn-group">
+              <button type="button" className="btn btn-color-feisbus-da rounded-circle ms-2"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i className="fas fa-sort-down"></i>
+              </button>
+              <ul className="dropdown-menu dropdown-menu-end mt-3">
+                <li><a className="dropdown-item" href="#a">Action</a></li>
+                <li><a className="dropdown-item" href="#a">Another action</a></li>
+                <li><a className="dropdown-item" href="#a">Something else here</a></li>
+                <li><button className="btn" onClick={handleLogout}>Cerrrar sesión</button></li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
