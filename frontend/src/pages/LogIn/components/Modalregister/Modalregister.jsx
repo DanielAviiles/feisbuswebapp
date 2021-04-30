@@ -180,13 +180,13 @@ const Modalregister = () => {
     validateRegister();
     if (msgErrEmail != null) return;
     if (infoGenero.current.getGenero() === null) return;
-    // const modalRegister = document.getElementById('registerModal');
-    await registerUser().then(() => {
-      // modalRegister.hidden();
+    document.getElementById("registerModal").style.display="none";
+    /* await registerUser().then(() => {
+      modalRegister.hidden();
       setTimeout(() => {
         history.replace('/');
       }, 800);
-    });
+    }); */
     // document.getElementById('registerModal')
     // ("#registerModal").modal('hide');
   }
@@ -270,7 +270,9 @@ const Modalregister = () => {
               </div>
               <div className="row">
                 <div className="col-12 d-flex justify-content-center">
-                  <button className="btn bg-color-da text-white" type="submit">Registrarte</button>
+                  <button className="btn bg-color-da text-white" type="submit">
+                    Registrarte
+                  </button>
                 </div>
               </div>
             </form>

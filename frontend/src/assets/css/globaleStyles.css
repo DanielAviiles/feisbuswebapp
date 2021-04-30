@@ -1,0 +1,22 @@
+.perso-logo-da {
+  height: 42px;
+  width: 42px;
+}
+
+.group-input-da {
+  border-start-start-radius: 25rem;
+  border-end-start-radius: 25rem;
+  background-color: #f0f2f5;
+  border-right: 0em !important;
+}
+.input-addons-perso-da {
+  border-start-end-radius: 25rem;
+  border-end-end-radius: 25rem;
+  background-color: #f0f2f5;
+  border-left: 0em !important;
+  padding-left: 0em;
+}
+
+.nav-shadow-da {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
