@@ -36,6 +36,17 @@
 
 .btn-color-feisbus-da {
   color: #000;
-  background-color: #c9c9c9;
-  border-color: #c9c9c9;
+  background-color: #dfdfdf;
+  border-color: #dfdfdf;
+}
+
+.font-size-side-nav {
+  font-size: .9375rem !important;
+  font-family: inherit;
+}
+
+.btn-sidenav-da {
+  color: #000;
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
 }

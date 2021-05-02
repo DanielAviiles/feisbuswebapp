@@ -35,32 +35,44 @@ const Navbar = ({dataUser}) => {
               </li>
             </ul>
             <ul className="navbar-nav justify-content-center ms-5 mb-lg-0">
-              <li className="nav-item ms-4 me-5">
-                <i className="fas fa-home fs-3 ms-2"></i>
+              <li className="nav-item ms-3 me-5 border-primary border-bottom border-4 rounded">
+                <button className="btn">
+                  <i className="fas fa-home fs-3 ms-2 text-primary"></i>
+                </button>
               </li>
-              <li className="nav-item ms-4 me-5">
-                <i className="far fa-tv fs-3 color-icons-nav-da"></i>
+              <li className="nav-item me-5">
+                <button className="btn">
+                  <i className="far fa-tv fs-3 color-icons-nav-da"></i>
+                </button>
               </li>
-              <li className="nav-item ms-4 me-5">
-                <i className="fas fa-store fs-3 color-icons-nav-da"></i>
+              <li className="nav-item me-5">
+                <button className="btn">
+                  <i className="fas fa-store fs-3 color-icons-nav-da"></i>
+                </button>
               </li>
-              <li className="nav-item ms-4 me-5 border border-3 border-color-nav-da rounded-circle">
-                <i className="fas fa-users fs-5 color-icons-nav-da p-1"></i>
+              <li className="nav-item me-5">
+                <button className="btn">
+                  <div className="border border-3 border-color-nav-da rounded-circle">
+                    <i className="fas fa-users fs-5 color-icons-nav-da p-1"></i>
+                  </div>
+                </button>
               </li>
-              <li className="nav-item ms-4">
-                <img src="https://img.icons8.com/material-outlined/50/8C8C8C/facebook-gaming.png" width="32" alt="FG"/>
+              <li className="nav-item">
+                <button className="btn">
+                  <img src="https://img.icons8.com/material-outlined/50/8C8C8C/facebook-gaming.png" width="32" alt="FG"/>
+                </button>
               </li>
             </ul>
           </div>
           
           <div className="ps-4">
-            <div className="btn-group me-4">
-              <button className="btn">
+            <div className="btn-group me-3">
+              <button className="btn rounded-pill">
                 <img src={dataUser.imgUrlPerfil} width="35" alt="profileimg" className="rounded-circle"/>
                 <strong className="ms-2">{ dataUser.nombres }</strong>
               </button>
             </div>
-            <BtnGroup iconBtn="fas fa-plus"/>
+            <BtnGroup iconBtn="fas fa-th"/>
             <BtnGroup iconBtn="fab fa-facebook-messenger"/>
             <BtnGroup iconBtn="fas fa-bell" />
             <div className="btn-group">
