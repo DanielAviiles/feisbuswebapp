@@ -9,6 +9,24 @@ const baseInfoUserModel = async (userId) => {
   return data;
 }
 
+const postRealizados = async (perfilId) => {
+  // Solo se hara consultas a publicaciones propias
+  // del usuario actualmente logueado
+  const data = await pool.query(`SELECT 
+      foto.imagen urlimg, 
+      publicacion.descripcion,
+      publicacion.perfil_id perfilId,
+      publicacion.fecha_post fechaRealizada 
+    FROM 
+      publicacion, 
+      foto 
+    WHERE 
+      publicacion.perfil_id = ${perfilId} AND 
+      publicacion.id = foto.publicacion_id`);
+  return data;
+}
+
 module.exports = {
-  baseInfoUserModel
+  baseInfoUserModel,
+  postRealizados
 }

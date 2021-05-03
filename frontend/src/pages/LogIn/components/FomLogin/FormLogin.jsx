@@ -110,7 +110,7 @@ const FormLogin = () => {
         <div className="col-auto mb-3">
           <input type="text" className={`form-control input-login-card mb-3 ${(email.err) ? 'is-invalid' : ''}`}
             name="email" value={email.value} onChange={handleInputChange} id="loginEmail"
-            placeholder="Correo electrónico o número de telefono"/>
+            placeholder="Correo electrónico o número de teléfono"/>
           <input type="password" className={`form-control input-login-card ${(passwd.err) ? 'is-invalid' : ''}`}
             name="passwd" value={passwd.value} onChange={handleInputChange} id="loginPasswd"
             placeholder="Contraseña"/>
@@ -122,11 +122,11 @@ const FormLogin = () => {
         )}
         <div className="d-grid gap-2">
           <button type='submit' className="btn btn-sesion-da text-white">
-            Iniciar sesión
+            Entrar
           </button>
         </div>
         <div className="col-12 d-flex justify-content-center my-3">
-          <a href="/authentication" className="link-forgot-passwd">¿Olvidaste tu contraseña?</a>
+          <a href="/authentication" className="link-forgot-passwd">¿Has olvidado la contraseña?</a>
         </div>
       </form>
     </>

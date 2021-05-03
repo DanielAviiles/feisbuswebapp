@@ -8,7 +8,8 @@ router.get('/:userid', async (req, res) => {
   const { userid } = req.params;
   try {
     const dataUser = await infoModel.baseInfoUserModel(userid);
-    res.json({ dataUser });
+    const posteos = await infoModel.postRealizados(userid);
+    res.json({ dataUser, posteos });
   } catch (err) {
     console.log(err)
   }
