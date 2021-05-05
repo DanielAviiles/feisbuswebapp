@@ -6,6 +6,7 @@ import '../assets/css/globaleStyles.css';
 import BtnGroup from './BtnGroup';
 
 const imgNav = 'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg';
+const fgImg = 'https://img.icons8.com/material-outlined/50/8C8C8C/facebook-gaming.png';
 
 const Navbar = ({dataUser}) => {
   const history = useHistory();
@@ -21,7 +22,7 @@ const Navbar = ({dataUser}) => {
       <nav className="navbar navbar-expand-lg navbar-light bg-light nav-shadow-da">
         <div className="container-fluid">
           <a className="navbar-brand p-0 ms-2 me-2 " href="/">
-            <img src={imgNav} alt="logo" className=" perso-logo-da"/>
+            <img src={imgNav} alt="logo" className="perso-logo-da"/>
           </a>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-5 mb-2 mb-lg-0">
@@ -59,7 +60,7 @@ const Navbar = ({dataUser}) => {
               </li>
               <li className="nav-item">
                 <button className="btn">
-                  <img src="https://img.icons8.com/material-outlined/50/8C8C8C/facebook-gaming.png" width="32" alt="FG"/>
+                  <img src={fgImg} width="32" alt="FG"/>
                 </button>
               </li>
             </ul>

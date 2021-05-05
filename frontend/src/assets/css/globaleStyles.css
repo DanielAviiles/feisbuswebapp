@@ -50,3 +50,18 @@
   background-color: #e0e0e0;
   border-color: #e0e0e0;
 }
+
+.container-card-global{
+  padding: 1.5rem 5rem ;
+}
+
+.card-style-global{
+  background-color: #ffff;
+  border-radius: 0.7rem !important;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+.btn-options-card:hover{
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
+}

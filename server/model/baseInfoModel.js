@@ -16,13 +16,14 @@ const postRealizados = async (perfilId) => {
       foto.imagen urlimg, 
       publicacion.descripcion,
       publicacion.perfil_id perfilId,
-      publicacion.fecha_post fechaRealizada 
+      publicacion.fecha_post 
     FROM 
       publicacion, 
       foto 
     WHERE 
       publicacion.perfil_id = ${perfilId} AND 
-      publicacion.id = foto.publicacion_id`);
+      publicacion.id = foto.publicacion_id
+    ORDER BY publicacion.fecha_post DESC`);
   return data;
 }
 

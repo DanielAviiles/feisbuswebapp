@@ -9,11 +9,13 @@ const endPointLogged = `${REACT_APP_API}/aboutuser`;
 
 export const DashBoardRoutes = () => {
   const [userData, setUserData] = useState({});
+  const [posteos, setPosteos] = useState(null);
   const consumeData = async () => {
     try {
       const { userLogin } = JSON.parse(localStorage.getItem('idUserLoged'));
       const { data } = await axios.get(`${endPointLogged}/${userLogin}`);
       setUserData(data.dataUser[0]);
+      setPosteos(data.posteos);
     } catch (err) {
       console.warn(err);
     }
@@ -28,7 +30,9 @@ export const DashBoardRoutes = () => {
       <div className="container-fluid">
         <Switch>
           <Route exact path="/dashboard"
-              render={(props) => <HomeView {...props} datauser={userData} />} />
+            render={(props) => 
+              <HomeView {...props} datauser={userData}
+                    posteos={posteos} />} />
           <Redirect to="/dashboard"/>
         </Switch>
       </div>
