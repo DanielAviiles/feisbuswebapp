@@ -67,3 +67,39 @@
   background-color: #e0e0e0;
   border-color: #e0e0e0;
 }
+
+.icon-stream-fb {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/vHQA4SpBM5B.png);
+  background-position: 0 0;
+  background-size: auto;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-foto-video-fb {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/vHQA4SpBM5B.png);
+  background-position: 0 -125px;
+  background-size: auto;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.block-btn {
+  display: grid !important;
+}
+
+.btn-input-postear {
+  border-radius: 25rem 25rem 25rem 25rem;
+  background-color: #f0f2f5;
+  justify-content: flex-start;
+  justify-items: flex-start;
+  display: flex;
+  color: #65676B;
+} .btn-input-postear:hover {
+  background-color: #dfdfdf;
+  color: #65676B;
+}

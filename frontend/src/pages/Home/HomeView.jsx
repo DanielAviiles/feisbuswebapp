@@ -14,6 +14,9 @@ const HomeView = ({ datauser, posteos }) => {
         </div>
         <div className="col-6">
           <div className="row container-card-global d-flex justify-content-center">
+            <div className="mb-4">
+              <Card datauser={datauser} typeCard="postear" />
+            </div>
             {
               (posteos != null)
                 ? (posteos.map((item, idx) => (
@@ -25,7 +28,6 @@ const HomeView = ({ datauser, posteos }) => {
                   <div className="spinner-border" role="status">
                     <span className="visually-hidden">Loading...</span>
                   </div>)
-                
             }
           </div>
         </div>
