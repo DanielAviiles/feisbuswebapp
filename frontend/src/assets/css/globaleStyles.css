@@ -51,10 +51,14 @@
   border-color: #e0e0e0;
 }
 
-.container-card-global{
+.container-dashboard {
   padding: 1.5rem 5rem;
+}
+
+.container-scroll-global{
   max-height: 37.5em;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .card-style-global{
@@ -84,6 +88,46 @@
   background-size: auto;
   width: 24px;
   height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-bithday-fb {
+  height: 36px;
+  width: 36px;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yV/r/VLkjyo0WJdh.png);
+  background-position: 0 0;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-camera-chat {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/rG4b5J-vt9i.png);
+  background-position: -46px -219px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-lupa-chat {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yp/r/yXw2vmEvHEh.png);
+  background-position: 0 -861px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-options-chat {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yp/r/yXw2vmEvHEh.png);
+  background-position: 0 -844px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
 }

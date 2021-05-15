@@ -2,7 +2,6 @@ import React from 'react';
 import '../assets/css/globaleStyles.css';
 
 const Card = ({ datauser, dataPost, typeCard = 'standar' }) => {
-  // console.log(dataPost);
   return (
     <div className="card p-0 border-0 card-style-global">
       {
@@ -85,11 +84,6 @@ const Card = ({ datauser, dataPost, typeCard = 'standar' }) => {
                   <img src={datauser.imgUrlPerfil} alt="user" width="45" className="rounded-circle"/>
                 </div>
                 <div className="col-11 pe-0">
-                  {/* <div className="d-grid gap-2">
-                    <button className="btn btn-input-postear ms-3">
-                      ¿Qué estás pensando, {datauser.nombres}?
-                    </button>
-                  </div> */}
                   <div className="block-btn">
                     <button className="btn btn-input-postear ms-3">
                       ¿Qué estás pensando, {datauser.nombres}?
@@ -105,14 +99,14 @@ const Card = ({ datauser, dataPost, typeCard = 'standar' }) => {
                     <span className="mt-4 pe-2">
                       <i className="icon-stream-fb"></i>
                     </span>
-                    <strong>Video en vivo</strong>
+                    <strong className="text-muted">Video en vivo</strong>
                   </button>
 
                   <button className="btn btn-options-card">
                     <span className="pe-2">
                       <i className="icon-foto-video-fb pe-2"></i>
                     </span>
-                    <strong>Foto/video</strong>
+                    <strong className="text-muted">Foto/video</strong>
                   </button>
                 </div>
               </div>

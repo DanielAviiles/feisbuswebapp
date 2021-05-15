@@ -3,17 +3,18 @@ import Sidenav from './components/Sidenav';
 import Card from '../../components/Card';
 
 import '../../assets/css/globaleStyles.css';
+import SideNavBox from './components/SideNavBox';
 
 const HomeView = ({ datauser, posteos }) => {
   return (
     <>
       <div className="row">
-        <div className="col-3">
+        <div className="col-3 container-scroll-global">
           <Sidenav info={datauser} />
           <hr/>
         </div>
         <div className="col-6">
-          <div className="row container-card-global d-flex justify-content-center">
+          <div className="row d-flex justify-content-center container-dashboard">
             <div className="mb-4">
               <Card datauser={datauser} typeCard="postear" />
             </div>
@@ -31,8 +32,8 @@ const HomeView = ({ datauser, posteos }) => {
             }
           </div>
         </div>
-        <div className="col-3 bg-success">
-          <h1>Hola mundo</h1>
+        <div className="col-3">
+          <SideNavBox datauser={datauser}/>
         </div>
       </div>
     </>
