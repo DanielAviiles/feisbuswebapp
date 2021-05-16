@@ -53,6 +53,7 @@
 
 .container-dashboard {
   padding: 1.5rem 5rem;
+  max-height: 37.5em;
 }
 
 .container-scroll-global{
