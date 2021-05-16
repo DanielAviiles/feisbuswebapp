@@ -37,7 +37,9 @@ export const DashBoardRoutes = () => {
               <HomeView {...props} datauser={userData}
                 posteos={posteos} />} />
           <Route exact path='/profile/:concatName'
-            render={(props) => <DashBoardProfile {...props}/>}/>
+            render={(props) =>
+              <DashBoardProfile {...props}
+                userLoged={userData} posts={posteos} />} />
           <Redirect to="/dashboard"/>
         </Switch>
       </div>

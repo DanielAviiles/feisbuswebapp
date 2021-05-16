@@ -21,7 +21,7 @@ const Navbar = ({dataUser}) => {
   const toProfile = () => {
     let frstName = (dataUser.nombres).split(' ');
     let sndName = (dataUser.apellidos).split(' ');
-    history.replace(`/profile/${(frstName[0]).toLowerCase()}.${(sndName[0]).toLowerCase()}`);
+    history.replace(`/profile/${(frstName[0]).toLowerCase()}.${(sndName[0]).toLowerCase()}_${dataUser.id}`);
   }
 
   return (

@@ -1,16 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { elementsSideNav } from '../../../assets/data/listSideNav';
 import '../../../assets/css/globaleStyles.css';
 
 const endpointIMG = 'https://static.xx.fbcdn.net/rsrc.php/v3';
 
 const Sidenav = ({ info }) => {
+  const toProfile = () => {
+    let frstName = (info.nombres)?.split(' ');
+    let sndName = (info.apellidos)?.split(' ');
+    if (frstName === undefined) return '/profile/unknown';
+    return `/profile/${(frstName[0]).toLowerCase()}.${(sndName[0]).toLowerCase()}_${info.id}`;
+  }
   return (
     <nav className="nav flex-column mt-3 ms-0">
-      <a className="nav-link text-dark font-size-side-nav" href="#s">
+      <Link to={toProfile} className="nav-link text-dark font-size-side-nav">
         <img src={info.imgUrlPerfil} alt="img" width="30" className="rounded-circle me-3" />
         {info.nombres} {info.apellidos}
-      </a>
+      </Link>
       {
         elementsSideNav.map((item, idx) => (
           <a className="nav-link text-dark font-size-side-nav" href="#s" key={idx}>
