@@ -5,7 +5,7 @@ const ImgAdvice = 'https://azurecomcdn.azureedge.net/cvt-02fe7c8f73be7794706db3d
 
 const SideNavBox = () => {
   return (
-    <div className="mt-3 container-scroll-global">
+    <div className="mt-3">
       <strong className="text-muted">Publicidad</strong>
       <div className="card mb-3 border-0 bg-transparent mt-2">
         <div className="row g-0">

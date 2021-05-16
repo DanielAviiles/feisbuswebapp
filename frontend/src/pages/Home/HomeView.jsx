@@ -32,7 +32,7 @@ const HomeView = ({ datauser, posteos }) => {
             }
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-3 container-scroll-global">
           <SideNavBox datauser={datauser}/>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router';
 import Navbar from '../components/Navbar';
 import HomeView from '../pages/Home/HomeView';
 import axios from 'axios';
+import DashBoardProfile from '../pages/Profile/DashBoardProfile';
 
 const { REACT_APP_API } = process.env;
 const endPointLogged = `${REACT_APP_API}/aboutuser`;
@@ -10,6 +11,7 @@ const endPointLogged = `${REACT_APP_API}/aboutuser`;
 export const DashBoardRoutes = () => {
   const [userData, setUserData] = useState({});
   const [posteos, setPosteos] = useState(null);
+
   const consumeData = async () => {
     try {
       const { userLogin } = JSON.parse(localStorage.getItem('idUserLoged'));
@@ -24,6 +26,7 @@ export const DashBoardRoutes = () => {
   useEffect(() => {
     consumeData();
   }, []);
+
   return (
     <>
       <Navbar dataUser={userData} />
@@ -32,7 +35,9 @@ export const DashBoardRoutes = () => {
           <Route exact path="/dashboard"
             render={(props) => 
               <HomeView {...props} datauser={userData}
-                    posteos={posteos} />} />
+                posteos={posteos} />} />
+          <Route exact path='/profile/:concatName'
+            render={(props) => <DashBoardProfile {...props}/>}/>
           <Redirect to="/dashboard"/>
         </Switch>
       </div>

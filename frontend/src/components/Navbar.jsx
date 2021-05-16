@@ -17,6 +17,13 @@ const Navbar = ({dataUser}) => {
     });
     history.replace('/login');
   }
+
+  const toProfile = () => {
+    let frstName = (dataUser.nombres).split(' ');
+    let sndName = (dataUser.apellidos).split(' ');
+    history.replace(`/profile/${(frstName[0]).toLowerCase()}.${(sndName[0]).toLowerCase()}`);
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light nav-shadow-da">
@@ -68,7 +75,7 @@ const Navbar = ({dataUser}) => {
           
           <div className="ps-4">
             <div className="btn-group me-3">
-              <button className="btn rounded-pill">
+              <button className="btn rounded-pill" onClick={toProfile}>
                 <img src={dataUser.imgUrlPerfil} width="35" alt="profileimg" className="rounded-circle"/>
                 <strong className="ms-2">{ dataUser.nombres }</strong>
               </button>
