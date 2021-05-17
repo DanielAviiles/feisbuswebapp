@@ -26,7 +26,7 @@ const Navbar = ({dataUser}) => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light nav-shadow-da">
+      <nav className="navbar sticky-nav navbar-expand-lg navbar-light bg-light nav-shadow-da">
         <div className="container-fluid">
           <a className="navbar-brand p-0 ms-2 me-2 " href="/">
             <img src={imgNav} alt="logo" className="perso-logo-da"/>
@@ -44,7 +44,7 @@ const Navbar = ({dataUser}) => {
             </ul>
             <ul className="navbar-nav justify-content-center ms-5 mb-lg-0">
               <li className="nav-item ms-3 me-5 border-primary border-bottom border-4 rounded">
-                <button className="btn">
+                <button className="btn" onClick={() => history.replace('/dashboard')}>
                   <i className="fas fa-home fs-3 ms-2 text-primary"></i>
                 </button>
               </li>

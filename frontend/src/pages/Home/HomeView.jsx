@@ -8,13 +8,13 @@ import SideNavBox from './components/SideNavBox';
 const HomeView = ({ datauser, posteos }) => {
   return (
     <div className="container-fluid">
-      <div className="row">
-        <div className="col-3 container-scroll-global">
+      <div className="container-padre">
+        <div className="container-hijo contenido-lateral">
           <Sidenav info={datauser} />
           <hr/>
         </div>
-        <div className="col-6">
-          <div className="row d-flex justify-content-center container-dashboard">
+        <div className="contenido-central">
+          <div className="content-interno container-dashboard">
             <div className="mb-4">
               <Card datauser={datauser} typeCard="postear" />
             </div>
@@ -32,7 +32,7 @@ const HomeView = ({ datauser, posteos }) => {
             }
           </div>
         </div>
-        <div className="col-3 container-scroll-global">
+        <div className="container-hijo contenido-lateral">
           <SideNavBox datauser={datauser}/>
         </div>
       </div>
