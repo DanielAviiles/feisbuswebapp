@@ -7,7 +7,7 @@ import SideNavBox from './components/SideNavBox';
 
 const HomeView = ({ datauser, posteos }) => {
   return (
-    <>
+    <div className="container-fluid">
       <div className="row">
         <div className="col-3 container-scroll-global">
           <Sidenav info={datauser} />
@@ -36,7 +36,7 @@ const HomeView = ({ datauser, posteos }) => {
           <SideNavBox datauser={datauser}/>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
