@@ -1,19 +1,20 @@
+import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import '../../assets/css/globaleStyles.css';
-import '../../assets/css/FeisStyle.css';
 import ContainerNameProfile from './components/ContainerNameProfile';
 import PortadaBackground from './components/PortadaBackground';
+import '../../assets/css/globaleStyles.css';
+import '../../assets/css/FeisStyle.css';
 
 const { REACT_APP_API , REACT_APP_IMG_PORTADA} = process.env;
 const endPointLogged = `${REACT_APP_API}/aboutuser`;
 const imgLoadingProfile = 'http://www.esivalladolid.com/wp-content/uploads/2017/11/default2-1.jpg';
 
-const DashBoardProfile = ({ userLoged, posts, history }) => {
+const DashBoardProfile = ({ userLoged = null, posts, history }) => {
   const [userInfo, setUserInfo] = useState({});
   const [posteos, setPosteos] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isEdit, setIsEdit] = useState(true);
   const { concatName } = useParams();
 
   console.log(posteos); // TODO: quitar pronto
@@ -25,6 +26,7 @@ const DashBoardProfile = ({ userLoged, posts, history }) => {
       if (data.dataUser.length === 0) history.replace('/dashboard');
       setUserInfo(data.dataUser[0]);
       setPosteos(data.posteos);
+      setIsEdit(false);
       setLoading(false);
     } catch (err) {
       console.warn(err);
@@ -40,14 +42,21 @@ const DashBoardProfile = ({ userLoged, posts, history }) => {
       history.replace('/dashboard');
       return;
     }
-    if (userLoged.id !== infoLink[1]) consumeData();
-    else {
-      setUserInfo(userLoged);
-      setPosteos(posts);
-      setLoading(false);
+    if (userLoged !== null) {
+      if (isNaN(parseInt(infoLink[1], 10))) {
+        history.replace('/dashboard');
+        return;
+      }
+      if (parseInt(userLoged.id, 10) !== parseInt(infoLink[1], 10))
+        consumeData();
+      else {
+        setUserInfo(userLoged);
+        setPosteos(posts);
+        setLoading(false);
+      }
     }
   }, [userLoged, posts, concatName, history, consumeData]);
-
+  console.log(isEdit);
   return (
     <div className="rq0escxv du4w35lb">
       <div className="du4w35lb cbu4d94t j83agx80">
@@ -62,11 +71,13 @@ const DashBoardProfile = ({ userLoged, posts, history }) => {
                       ? REACT_APP_IMG_PORTADA
                       : (userInfo.img_portada !== null)
                         ? userInfo.img_portada
-                        : REACT_APP_IMG_PORTADA} />
+                        : REACT_APP_IMG_PORTADA}
+                      isEdit={isEdit} />
                     
                     <ContainerNameProfile fullname={
                       (loading) ? 'Cargando ...' : `${userInfo.nombres} ${userInfo.apellidos}`}
-                      imgProfile={ (loading) ? imgLoadingProfile : userInfo.imgUrlPerfil} />
+                      imgProfile={(loading) ? imgLoadingProfile : userInfo.imgUrlPerfil}
+                      isEdit={isEdit} />
                     
                   </div>
                 </div>
