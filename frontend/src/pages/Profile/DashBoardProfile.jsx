@@ -56,7 +56,7 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
       }
     }
   }, [userLoged, posts, concatName, history, consumeData]);
-  console.log(isEdit);
+
   return (
     <div className="rq0escxv du4w35lb">
       <div className="du4w35lb cbu4d94t j83agx80">
