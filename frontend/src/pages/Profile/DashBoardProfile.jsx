@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Route, Switch, useLocation, useParams } from 'react-router-dom';
 import ContainerNameProfile from './components/ContainerNameProfile';
 import PortadaBackground from './components/PortadaBackground';
 import Separador from './components/Separador';
+import NavLink from './components/NavLink';
+import PostsProfile from './Pages/PostsProfile';
+import AboutProfile from './Pages/AboutProfile';
 
 import '../../assets/css/globaleStyles.css';
 import '../../assets/css/globalStyle2.css';
@@ -19,8 +22,9 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
   const [loading, setLoading] = useState(true);
   const [isEdit, setIsEdit] = useState(true);
   const { concatName } = useParams();
+  const location = useLocation();
 
-  console.log(posteos); // TODO: quitar pronto
+  console.log('Posteos: ',posteos); // TODO: quitar pronto
 
   const consumeData = useCallback(async () => {
     try {
@@ -42,6 +46,7 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
       history.replace('/dashboard');
       return;
     } else if (infoLink.length > 2) {
+      console.log('Mas de 2 caracteres');
       history.replace('/dashboard');
       return;
     }
@@ -81,10 +86,29 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
                       (loading) ? 'Cargando ...' : `${userInfo.nombres} ${userInfo.apellidos}`}
                       imgProfile={(loading) ? imgLoadingProfile : userInfo.imgUrlPerfil}
                       isEdit={isEdit} />
-                    
-                    <Separador />
-                    <div className="cmemclpsozxz"></div>
-                    
+
+                  </div>
+
+                  <Separador />
+                  <div className="cmemclpsozxz"></div>
+                  <NavLink />
+
+                  <div className="container-elements-of-nav-link">
+
+                    <div className="fst-obj-cont">
+                      <div className="alskjall32847kdjla">
+                        <div className="sajljoir93884lkj"></div>
+                      </div>
+                    </div>
+                    <div className="snd-obj-cont">
+                      <Switch>
+                        <Route exact path={location.pathname}
+                          render={(props) => <PostsProfile {...props} />} />
+                        <Route exact path={`${location.pathname}/about`}
+                          render={(props) => <AboutProfile {...props} />}/>
+                      </Switch>
+                    </div>
+
                   </div>
                 </div>
               </div>

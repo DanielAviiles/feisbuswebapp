@@ -72,9 +72,13 @@ const ContainerNameProfile = ({ fullname, imgProfile, isEdit }) => {
                     <div className="adfjalksfjlqlkflka">
                       <div className="cmaskjlkassdmmddj">
                         <span className="dcacknkasaasxkm">
-                          <button className="nlklknasasd" tabIndex="0" type="button">
-                            Agregar presentación
-                          </button>
+                          {
+                            (isEdit)
+                              ? (<button className="nlklknasasd" tabIndex="0" type="button">
+                                Agregar presentación
+                              </button>)
+                              : (<p className="text-muted">Presentacion quemada desde el FrontEnd</p>)
+                          }
                         </span>
                       </div>
                     </div>
