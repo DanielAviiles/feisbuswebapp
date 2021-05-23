@@ -3,7 +3,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ContainerNameProfile from './components/ContainerNameProfile';
 import PortadaBackground from './components/PortadaBackground';
+import Separador from './components/Separador';
+
 import '../../assets/css/globaleStyles.css';
+import '../../assets/css/globalStyle2.css';
 import '../../assets/css/FeisStyle.css';
 
 const { REACT_APP_API , REACT_APP_IMG_PORTADA} = process.env;
@@ -78,6 +81,9 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
                       (loading) ? 'Cargando ...' : `${userInfo.nombres} ${userInfo.apellidos}`}
                       imgProfile={(loading) ? imgLoadingProfile : userInfo.imgUrlPerfil}
                       isEdit={isEdit} />
+                    
+                    <Separador />
+                    <div className="cmemclpsozxz"></div>
                     
                   </div>
                 </div>
