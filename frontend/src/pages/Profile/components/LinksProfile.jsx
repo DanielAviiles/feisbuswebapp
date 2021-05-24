@@ -7,14 +7,11 @@ const LinksProfile = ({ url = '#', textNav = 'Default' }) => {
 
   useEffect(() => {
     if (pathname === url) {
-      console.log('Url actual: ', url);
       setActiveObj(<div className="active-element-nav"></div>)
     } else {
       setActiveObj(null);
     }
   }, [pathname, url]);
-
-  // console.log('URL: ', url);
 
   return (
     <NavLink exact to={url} className="style-nav-link-profile"
