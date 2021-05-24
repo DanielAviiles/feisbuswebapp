@@ -32,13 +32,17 @@ export const DashBoardRoutes = () => {
       <Navbar dataUser={userData} />
       <Switch>
         <Route exact path="/dashboard"
-          render={(props) => 
+          render={(props) => (
             <HomeView {...props} datauser={userData}
-              posteos={posteos} />} />
+              posteos={posteos} />)} />
         <Route exact path='/profile/:concatName'
-          render={(props) =>
+          render={(props) => (
             <DashBoardProfile {...props}
-              userLoged={userData} posts={posteos} />} />
+              userLoged={userData} posts={posteos} />)} />
+        <Route exact path='/profile/:concatName/about'
+          render={(props) => (
+            <DashBoardProfile {...props}
+              userLoged={userData} posts={posteos} />)} />
         <Redirect to="/dashboard"/>
       </Switch>
     </>

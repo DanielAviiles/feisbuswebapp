@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Route, Switch, useLocation, useParams } from 'react-router-dom';
+import { Route, Switch, useParams } from 'react-router-dom';
 import ContainerNameProfile from './components/ContainerNameProfile';
 import PortadaBackground from './components/PortadaBackground';
 import Separador from './components/Separador';
@@ -22,7 +22,6 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
   const [loading, setLoading] = useState(true);
   const [isEdit, setIsEdit] = useState(true);
   const { concatName } = useParams();
-  const location = useLocation();
 
   console.log('Posteos: ',posteos); // TODO: quitar pronto
 
@@ -91,7 +90,7 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
 
                   <Separador />
                   <div className="cmemclpsozxz"></div>
-                  <NavLink />
+                  <NavLink baseUrl={`/profile/${concatName}`} />
 
                   <div className="container-elements-of-nav-link">
 
@@ -102,9 +101,9 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
                     </div>
                     <div className="snd-obj-cont">
                       <Switch>
-                        <Route exact path={location.pathname}
+                        <Route exact path={`/profile/${concatName}`}
                           render={(props) => <PostsProfile {...props} />} />
-                        <Route exact path={`${location.pathname}/about`}
+                        <Route exact path={`/profile/${concatName}/about`}
                           render={(props) => <AboutProfile {...props} />}/>
                       </Switch>
                     </div>

@@ -1,10 +1,8 @@
 import React from 'react';
-import { useLocation } from 'react-router';
 import LinksProfile from './LinksProfile';
 import SelectMenu from './SelectMenu';
 
-const NavLink = () => {
-  const { pathname } = useLocation();
+const NavLink = ({ baseUrl }) => {
 
   return (
     <div className="nav-link-profile">
@@ -23,9 +21,9 @@ const NavLink = () => {
                             <div className="container-tab-links">
                               <div className="container-tab-links-2">
                                 <SelectMenu />
-                                <LinksProfile url={`${pathname}`} textNav="Publicaciones" />
-                                <LinksProfile url={`${pathname}/about`} textNav="Información" />
-                                <LinksProfile url={`${pathname}/amigos`} textNav="Amigos" />
+                                <LinksProfile url={`${baseUrl}`} textNav="Publicaciones" />
+                                <LinksProfile url={`${baseUrl}/about`} textNav="Información" />
+                                <LinksProfile url={`${baseUrl}/amigos`} textNav="Amigos" />
                               </div>
                             </div>
                           </div>
