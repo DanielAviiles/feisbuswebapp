@@ -23,8 +23,6 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
   const [isEdit, setIsEdit] = useState(true);
   const { concatName } = useParams();
 
-  console.log('Posteos: ',posteos); // TODO: quitar pronto
-
   const consumeData = useCallback(async () => {
     try {
       const infoLink = concatName.split('_');
@@ -102,7 +100,9 @@ const DashBoardProfile = ({ userLoged = null, posts, history }) => {
                     <div className="snd-obj-cont">
                       <Switch>
                         <Route exact path={`/profile/${concatName}`}
-                          render={(props) => <PostsProfile {...props} />} />
+                          render={(props) => <PostsProfile {...props}
+                            userData={userInfo} posteos={posteos} 
+                            edit={isEdit} loading={loading} />} />
                         <Route exact path={`/profile/${concatName}/about`}
                           render={(props) => <AboutProfile {...props} />}/>
                       </Switch>

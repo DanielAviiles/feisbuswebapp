@@ -130,6 +130,7 @@
   height: 24px;
   background-repeat: no-repeat;
   display: inline-block;
+  vertical-align: -0.25em;
 }
 
 .icon-foto-video-fb {
@@ -140,6 +141,7 @@
   height: 24px;
   background-repeat: no-repeat;
   display: inline-block;
+  vertical-align: -0.25em;
 }
 
 .icon-bithday-fb {
@@ -510,4 +512,28 @@
   box-sizing: border-box;
   position: relative;
   z-index: 0;
+}
+
+.icon-filter {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/GCrN7ITwt-9.png);
+  background-position: 0px -131px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+  filter: invert(8%) sepia(10%) saturate(200%) saturate(200%) saturate(166%) hue-rotate(177deg) brightness(104%) contrast(91%);
+}
+
+.icon-pinion {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/GCrN7ITwt-9.png);
+  background-position: 0px -250px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+  filter: invert(8%) sepia(10%) saturate(200%) saturate(200%) saturate(166%) hue-rotate(177deg) brightness(104%) contrast(91%);
 }
