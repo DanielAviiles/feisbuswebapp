@@ -12,21 +12,22 @@ const baseInfoUserModel = async (userId) => {
 }
 
 const postRealizados = async (perfilId) => {
-  // Solo se hara consultas a publicaciones propias
-  // del usuario actualmente logueado
+  /* Solo se hara consultas a publicaciones propias
+  del usuario actualmente logueado */
   const data = await pool.query(`SELECT 
-      foto.imagen urlimg, 
-      publicacion.descripcion,
-      publicacion.perfil_id perfilId,
-      publicacion.fecha_post 
-    FROM 
-      publicacion, 
-      foto 
-    WHERE 
-      publicacion.perfil_id = ${perfilId} AND 
-      publicacion.id = foto.publicacion_id
-    ORDER BY publicacion.fecha_post DESC`);
+      f.imagen urlimg, 
+      p.descripcion,
+      p.perfil_id perfilId,
+      p.fecha_post fechaRealizada 
+    FROM publicacion p
+    LEFT JOIN foto f ON p.id = f.publicacion_id 
+    WHERE p.perfil_id = ${perfilId} 
+    ORDER BY p.fecha_post DESC`);
   return data;
+}
+
+const postingData = async (data) => {
+
 }
 
 module.exports = {

@@ -86,7 +86,8 @@ const Card = ({ datauser, dataPost, typeCard = 'standar' }) => {
                 </div>
                 <div className="col-11 pe-0">
                   <div className="block-btn">
-                    <button className="btn btn-input-postear ms-3">
+                    <button type="button" className="btn btn-input-postear ms-3" data-bs-toggle="modal" 
+                      data-bs-target="#postearModal">
                       ¿Qué estás pensando, {datauser.nombres}?
                     </button>
                   </div>
