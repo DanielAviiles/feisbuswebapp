@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import HomeView from '../pages/Home/HomeView';
 import axios from 'axios';
 import DashBoardProfile from '../pages/Profile/DashBoardProfile';
+import ModalPost from '../components/ModalPost';
 
 const { REACT_APP_API } = process.env;
 const endPointLogged = `${REACT_APP_API}/aboutuser`;
@@ -30,6 +31,7 @@ export const DashBoardRoutes = () => {
   return (
     <>
       <Navbar dataUser={userData} />
+      <ModalPost />
       <Switch>
         <Route exact path="/dashboard"
           render={(props) => (

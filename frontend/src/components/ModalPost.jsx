@@ -2,8 +2,8 @@ import React from 'react'
 
 const ModalPost = () => {
   return (
-    <div classNameName="modal fade" id="postearModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div className="modal-dialog">
+    <div className="modal fade" id="postearModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
