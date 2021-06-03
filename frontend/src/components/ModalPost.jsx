@@ -4,15 +4,16 @@ import React, { useCallback, useEffect, useState } from 'react';
 import '../assets/css/globalStyle2.css';
 
 const { REACT_APP_API } = process.env;
-const endPointPrivicy = `${REACT_APP_API}/aboutuser/typesprivicy`;
+const endPoint = `${REACT_APP_API}/aboutuser`;
 
 const ModalPost = ({ userData }) => {
   const [privacidad, setPrivacidad] = useState([]);
   const [typePriv, setTypePriv] = useState(2);
+  const [descripcion, setDescripcion] = useState('');
 
   const consumeData = useCallback(async () => {
     try {
-      const { data: {typesPrivicy} } = await axios.get(endPointPrivicy);
+      const { data: {typesPrivicy} } = await axios.get(`${endPoint}/typesprivicy`);
       setPrivacidad(typesPrivicy)
     } catch (err) {
       console.warn(err);
@@ -23,11 +24,26 @@ const ModalPost = ({ userData }) => {
     consumeData()
   }, [consumeData]);
 
-  const handlePriv = ({ target }) => {
-    setTypePriv(parseInt(target.value, 10))
-  }
-
+  const handlePriv = ({ target }) => (setTypePriv(parseInt(target.value, 10)))
+  const handleChange = ({ target }) => (setDescripcion(target.value))
   const toCamelCase = (string) => (string.charAt(0).toUpperCase() + string.slice(1))
+
+  const publicPost = useCallback(async () => {
+    try {
+      const dataPost = {
+        descripcion,
+        perfil_id: userData.id,
+        privacidad_id: typePriv
+      }
+      await axios.post(`${endPoint}/publicar_post`, dataPost)
+        .then((resp) => {
+          console.log(`DATA INSERTADA:::::: ${resp}`);
+          window.location.reload();
+      }).catch((resp) => console.error(resp));
+    } catch (err) {
+      console.warn(err);
+    }
+  }, [descripcion, typePriv, userData])
 
   return (
     <div className="modal fade" id="postearModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,7 +85,8 @@ const ModalPost = ({ userData }) => {
 
               <div className="row px-2 pt-3">
                 <textarea className="form-control" placeholder={`¿Qué estás pensando, ${userData.nombres}?`} 
-                  aria-label="With textarea" style={{border: "0", fontSize: "1.5rem"}}></textarea>
+                  aria-label="With textarea" style={{ border: "0", fontSize: "1.5rem" }}
+                  onChange={handleChange}></textarea>
               </div>
 
               <div className="row px-2 pt-4">
@@ -95,7 +112,9 @@ const ModalPost = ({ userData }) => {
               </div>
 
               <div className="d-grid gap-2 mt-3 mx-2">
-                <button className="btn btn-primary" type="button">Publicar</button>
+                <button className="btn btn-primary" type="button"
+                  disabled={(descripcion !== '') ? false : true}
+                  onClick={publicPost}>Publicar</button>
               </div>
             </div>
           </div>

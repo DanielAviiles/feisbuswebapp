@@ -30,8 +30,15 @@ const privacidadData = async () => (
   await pool.query('SELECT * FROM privacidad')
 )
 
+const postDataPublicacion = async (data) => {
+  const resp = await pool.query(`INSERT INTO publicacion (descripcion, perfil_id, privacidad_id)
+    VALUES('${data.descripcion}', ${data.perfil_id}, ${data.privacidad_id})`);
+  return resp.insertId;
+}
+
 module.exports = {
   baseInfoUserModel,
   postRealizados,
-  privacidadData
+  privacidadData,
+  postDataPublicacion
 }

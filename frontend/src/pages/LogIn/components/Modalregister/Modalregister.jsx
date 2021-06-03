@@ -181,14 +181,12 @@ const Modalregister = () => {
     if (msgErrEmail != null) return;
     if (infoGenero.current.getGenero() === null) return;
     document.getElementById("registerModal").style.display="none";
-    /* await registerUser().then(() => {
-      modalRegister.hidden();
+    await registerUser().then(() => {
       setTimeout(() => {
         history.replace('/');
+        window.location.reload(); // TODO: creo que no se puede hacer despues de reenderizar y enviar a otra vista
       }, 800);
-    }); */
-    // document.getElementById('registerModal')
-    // ("#registerModal").modal('hide');
+    });
   }
 
   return (

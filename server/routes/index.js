@@ -28,4 +28,17 @@ router.get('/typesprivicy', async (req, res) => {
   }
 });
 
+router.post('/publicar_post', async (req, res) => {
+  try {
+    const rta = await infoModel.postDataPublicacion(req.body);
+    if (rta != null) {
+      res.json({ status: 200, insertId: rta });
+    } else {
+      res.json({ status: 400, insertId: null });
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+})
+
 module.exports = router;
