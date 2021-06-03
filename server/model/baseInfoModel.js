@@ -26,11 +26,12 @@ const postRealizados = async (perfilId) => {
   return data;
 }
 
-const postingData = async (data) => {
-
-}
+const privacidadData = async () => (
+  await pool.query('SELECT * FROM privacidad')
+)
 
 module.exports = {
   baseInfoUserModel,
-  postRealizados
+  postRealizados,
+  privacidadData
 }

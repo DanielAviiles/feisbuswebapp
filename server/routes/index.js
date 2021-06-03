@@ -3,7 +3,7 @@ var router = express.Router();
 const infoModel = require('../model/baseInfoModel');
 
 /* GET home page. */
-router.get('/:userid', async (req, res) => {
+router.get('/user/:userid', async (req, res) => {
   // Se consultara la informacion de la tabla usuario y perfil del usuario logueado
   const { userid } = req.params;
   try {
@@ -19,9 +19,13 @@ router.get('/:userid', async (req, res) => {
   }
 });
 
-router.get('/infouser', async (req, res) => {
-  // Planteamiento para devolver la data del usuario logueado en perfil
-  res.json();
+router.get('/typesprivicy', async (req, res) => {
+  try {
+    const typesPrivicy = await infoModel.privacidadData();
+    res.json({ typesPrivicy });
+  } catch (err) {
+    console.warn(err);
+  }
 });
 
 module.exports = router;

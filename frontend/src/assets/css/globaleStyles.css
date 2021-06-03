@@ -537,3 +537,58 @@
   vertical-align: -0.25em;
   filter: invert(8%) sepia(10%) saturate(200%) saturate(200%) saturate(166%) hue-rotate(177deg) brightness(104%) contrast(91%);
 }
+
+.icon-etiqueta-fb {
+  height: 24px;
+  width: 24px;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yf/r/--1BVnDDcTU.png);
+  background-position: 0px -282px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+}
+
+.icon-caritafeliz-fb-post {
+  height: 24px;
+  width: 24px;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yf/r/--1BVnDDcTU.png);
+  background-position: 0px -257px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+}
+
+.icon-location-fb-da {
+  height: 24px;
+  width: 24px;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/ilJnYx7YTMK.png);
+  background-position: 0px -275px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+}
+
+.icon-question-fa-da {
+  height: 24px;
+  width: 24px;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/pp1Qv1-yyNu.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+}
+
+.icon-options-post {
+  height: 24px;
+  width: 24px;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yf/r/--1BVnDDcTU.png);
+  background-position: 0px -182px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: -0.25em;
+}

@@ -7,7 +7,7 @@ import DashBoardProfile from '../pages/Profile/DashBoardProfile';
 import ModalPost from '../components/ModalPost';
 
 const { REACT_APP_API } = process.env;
-const endPointLogged = `${REACT_APP_API}/aboutuser`;
+const endPointLogged = `${REACT_APP_API}/aboutuser/user`;
 
 export const DashBoardRoutes = () => {
   const [userData, setUserData] = useState({});
@@ -31,7 +31,7 @@ export const DashBoardRoutes = () => {
   return (
     <>
       <Navbar dataUser={userData} />
-      <ModalPost />
+      <ModalPost userData={userData} />
       <Switch>
         <Route exact path="/dashboard"
           render={(props) => (

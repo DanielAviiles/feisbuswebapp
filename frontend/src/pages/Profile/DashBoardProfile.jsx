@@ -13,7 +13,7 @@ import '../../assets/css/globalStyle2.css';
 import '../../assets/css/FeisStyle.css';
 
 const { REACT_APP_API , REACT_APP_IMG_PORTADA} = process.env;
-const endPointLogged = `${REACT_APP_API}/aboutuser`;
+const endPointLogged = `${REACT_APP_API}/aboutuser/user`;
 const imgLoadingProfile = 'http://www.esivalladolid.com/wp-content/uploads/2017/11/default2-1.jpg';
 
 const DashBoardProfile = ({ userLoged = null, posts, history }) => {
